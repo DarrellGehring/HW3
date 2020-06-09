@@ -1,11 +1,13 @@
 #include <stdio.h>
 int main(int numForks, char *fileName[]) {
 
-	if ((numForks == '\0') || (numForks != 1 && numForks != 4)) {
-		printf("Invalid Parameter: only takes 1 or 4\n");
-		return 1;
+	if ((numForks == 1)
+		printf("Hello, World 1\n");
+		return 0;
+	} else if (numForks == 4) {
+		printf("Hello, World 2\n");
+		return 0;
+	} else {
+		return -1;
 	}
-
-	printf("Hello, World!\n");
-	return 0;
 }
