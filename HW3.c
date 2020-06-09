@@ -2,7 +2,7 @@
 #include <ctype.h>
 
 int main(int numArgs, char *args[]) {
-	if (numArgs != 2) {
+	if (numArgs != 3) {
 		printf("Error: requires two arguments.");
 		return -1;
 	}
