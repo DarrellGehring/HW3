@@ -1,7 +1,7 @@
 #include <stdio.h>
 int main(int numForks, char *fileName[]) {
 
-	if ((numForks == 1)
+	if (numForks == 1)
 		printf("Hello, World 1\n");
 		return 0;
 	} else if (numForks == 4) {
