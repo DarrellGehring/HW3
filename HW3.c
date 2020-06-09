@@ -7,7 +7,7 @@ int main(int numArgs, char *args[]) {
 		return -1;
 	}
 
-	printf("%s", args[1]);
+	printf("%s", args[2]);
 
 	return 0;
 }
