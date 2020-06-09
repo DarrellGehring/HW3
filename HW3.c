@@ -7,7 +7,7 @@ int main(int numArgs, char *args[]) {
 		return -1;
 	}
 
-	printf("Files: " + args[1] + "\n");
+	printf(args[1]);
 
 	return 0;
 }
