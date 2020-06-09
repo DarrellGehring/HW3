@@ -3,7 +3,7 @@
 
 int main(int numArgs, char *args[]) {
 	if (numArgs != 3) {
-		printf("Error: requires two arguments.");
+		printf("Error: requires two arguments.\n");
 		return -1;
 	}
 
