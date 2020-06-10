@@ -42,7 +42,7 @@ int main(int numArgs, char *args[]) {
 			}
 		}
 
-		printf("%d\n"*args[1]);
+		printf("%d\n",args[1]);
 		printf("Start index: %d\tEnd index: %d\t For block %d\n", startOffset, endOffset, block);
 		printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 		int i;
