@@ -29,7 +29,7 @@ int main(int numArgs, char *args[]) {
 
 		if (*args[1] == '4') {
 			int block = *args[3];
-			startOffset = (block)*((num + 3)/4) //Will produce index to start at 
+			startOffset = (block)*((num + 3) / 4); //Will produce index to start at 
 			
 			if (block != 3) {
 				endOffset = (((block + 1)*((num + 3) / 4)) - 1);
