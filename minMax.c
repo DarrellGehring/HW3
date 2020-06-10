@@ -11,7 +11,7 @@ int main(int numArgs, char *args[]) {
 	const char *filename = args[2];
 	
 	if (*args[1] != '1' && *args[1] != '4') {
-		printf("Error: first argument must be 1 or 4.\n");
+		printf("Error: first argument must be 1 or 4 in minMax. Was: %s\n", *args[1]);
 		return -1;
 	}
 
