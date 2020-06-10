@@ -50,8 +50,10 @@ int main(int numArgs, char *args[]) {
 
 		fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
 
-		int i;
-		for (i = startOffset; i <= endOffset; i++) {
+		int min;
+		int max;
+
+		for (int i = startOffset; i <= endOffset; i++) {
 			int temp = i;
 
 
@@ -59,13 +61,25 @@ int main(int numArgs, char *args[]) {
 			fread(&temp, sizeof(int), 1, readF);
 
 			if (i == startOffset) {
-				printf("%i: %i : %d\t\n", pid, temp, i);
+				min = temp;
+				max = temp;
+				//printf("%i: %i : %d\t\n", pid, temp, i);
+
 			}
 			else if (i == endOffset) {
-				printf("%i: %i : %d\t\n", pid, temp, i);
+				//printf("%i: %i : %d\t\n", pid, temp, i);
+			}
+
+			if (temp < min) {
+				min = temp;
+			}
+
+			if (temp > max) {
+				max = temp;
 			}
 		}
 		printf("Total numbers:%d Total Read: %d\n", num, i);
+		printf("Min:%d Max: %d\n", min, max);
 		fclose(readF);
 	}
 	else {
