@@ -59,10 +59,10 @@ int main(int numArgs, char *args[]) {
 			fread(&temp, sizeof(int), 1, readF);
 
 			if (i == 0) {
-				printf("%i: %i : %d\t", pid, temp, i);
+				printf("%i: %i : %d\t\n", pid, temp, i);
 			}
-			else if (i == endOffset) {
-				printf("%i: %i : %d\t", pid, temp, i);
+			else if (i == endOffset-1) {
+				printf("%i: %i : %d\t\n", pid, temp, i);
 			}
 		}
 		printf("Total numbers:%d Total Read: %d\n", num, i);
