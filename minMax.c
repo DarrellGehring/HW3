@@ -48,7 +48,7 @@ int main(int numArgs, char *args[]) {
 		for (i = startOffset; i < endOffset; i++) {
 			int temp = i;
 			fread(&temp, sizeof(int), 1, readF);
-			printf("%i: %i\t", pid, temp);
+			printf("%i: %i\t:%i", pid, temp, i);
 		}
 		printf("Total numbers:%i Total Read: %i\n", num, i);
 		fclose(readF);
