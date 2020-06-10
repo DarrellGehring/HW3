@@ -23,7 +23,7 @@ int main(int numArgs, char *args[]) {
 		printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 		int i;
 		for (i = 0; i < num; i++) {
-			int temp = 0;
+			int temp = i;
 			fread(&temp, sizeof(int), 1, readF);
 			printf("%i: %i\t", pid, temp);
 		}
