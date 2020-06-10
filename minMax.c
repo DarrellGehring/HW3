@@ -41,16 +41,16 @@ int main(int numArgs, char *args[]) {
 			}
 		}
 
-		sleep(10);
 
+		printf("Start index: %d\tEnd index: %d\n", startOffset, endOffset);
 		printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 		int i;
-		for (i = startOffset; i < endOffset; i++) {
+		/*for (i = startOffset; i < endOffset; i++) {
 			int temp = i;
 			fread(&temp, sizeof(int), 1, readF);
 			printf("%i: %i : %d\t", pid, temp, i);
 		}
-		printf("Total numbers:%d Total Read: %d\n", num, i);
+		printf("Total numbers:%d Total Read: %d\n", num, i);*/
 		fclose(readF);
 	}
 	else {
