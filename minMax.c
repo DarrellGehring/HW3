@@ -51,7 +51,7 @@ int main(int numArgs, char *args[]) {
 		fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
 
 		int i;
-		for (i = startOffset; i =< endOffset; i++) {
+		for (i = startOffset; i <= endOffset; i++) {
 			int temp = i;
 
 
