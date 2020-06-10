@@ -101,7 +101,7 @@ int main(int numArgs, char *args[]) {
 				for (i = 0; i < num; i++) {
 					int temp = 0;
 					fread(&temp, sizeof(int), 1, ft);
-					printf("%i: %i\t", pid, temp);
+					//printf("%i: %i\t", pid, temp);
 
 					if (i == 0) {
 						min = temp;
@@ -118,6 +118,8 @@ int main(int numArgs, char *args[]) {
 						max = temp;
 					}
 				}
+				printf("Min: %d Max: %d\n", min, max);
+
 				fclose(ft);
 			}
 			printf("\n");
