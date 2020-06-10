@@ -4,7 +4,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include<sys/wait.h> 
 
 
 int main(int numArgs, char *args[]) {
@@ -42,7 +41,7 @@ int main(int numArgs, char *args[]) {
 			}
 		}
 
-		wait(10);
+		sleep(10);
 
 		printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 		int i;
