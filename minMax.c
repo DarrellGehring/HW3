@@ -86,6 +86,8 @@ int main(int numArgs, char *args[]) {
 			fclose(readF);
 		}
 		else {
+			int min;
+			int max;
 			const char * filename = "test.txt";
 			FILE * ft = fopen(filename, "rb");
 			if (ft) {
@@ -100,6 +102,21 @@ int main(int numArgs, char *args[]) {
 					int temp = 0;
 					fread(&temp, sizeof(int), 1, ft);
 					printf("%i: %i\t", pid, temp);
+
+					if (i == 0) {
+						min = temp;
+						max = temp;
+						//printf("%i: %i : %d\t\n", pid, temp, i);
+
+					}
+
+					if (temp < min) {
+						min = temp;
+					}
+
+					if (temp > max) {
+						max = temp;
+					}
 				}
 				fclose(ft);
 			}
