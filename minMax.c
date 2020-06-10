@@ -8,6 +8,11 @@
 int main(int numArgs, char *args[]) {
 
 	const char *filename = args[2];
+	
+	if (*args[1] != '1' && *args[1] != '4') {
+		printf("Error: first argument must be 1 or 4.\n");
+		return -1;
+	}
 
 	FILE * readF = fopen(filename, "rb");
 
@@ -19,10 +24,24 @@ int main(int numArgs, char *args[]) {
 
 		int num = (int)size / (int)sizeof(int); //How many total numbers in file
 
+		int startOffset = 0;
+		int endOffset = num;
+
+		if (*args[1] == '4') {
+			int block = *args[3];
+			startOffset = (block)*((num + 3)/4) //Will produce index to start at 
+			
+			if (block != 3) {
+				endOffset = (((block + 1)*((num + 3) / 4)) - 1);
+			}
+			else {
+				endOffset = num;
+			}
+		}
 
 		printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 		int i;
-		for (i = 0; i < num; i++) {
+		for (i = startOffset; i < endOffset; i++) {
 			int temp = i;
 			fread(&temp, sizeof(int), 1, readF);
 			printf("%i: %i\t", pid, temp);
