@@ -26,7 +26,7 @@ int main(int numArgs, char *args[]) {
 		int num = (int)size / (int)sizeof(int); //How many total numbers in file
 
 		int startOffset = 0;
-		int endOffset = num;
+		int endOffset = num - 1;
 		int block = 0;
 
 		if (*args[1] == '4') {
