@@ -17,7 +17,7 @@ int main(int numArgs, char *args[]) {
 	}
 
 	if (*args[1] == '1') {
-		execl("minMax", "minMax", "1", *args[2]);
+		execl("minMax", "minMax", "1", *args[2], (char *)0);
 	}
 
 	printf("\n");
