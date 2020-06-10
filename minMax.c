@@ -46,10 +46,15 @@ int main(int numArgs, char *args[]) {
 		printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 		
 		fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
-		
+
+		int first
+
 		int i;
 		for (i = startOffset; i < endOffset; i++) {
 			int temp = i;
+
+
+
 			fread(&temp, sizeof(int), 1, readF);
 			printf("%i: %i : %d\t", pid, temp, i);
 		}
