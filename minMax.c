@@ -46,6 +46,7 @@ int main(int numArgs, char *args[]) {
 			fread(&temp, sizeof(int), 1, readF);
 			printf("%i: %i\t", pid, temp);
 		}
+		printf("Total numbers:%i Total Read: %i\n", num, i);
 		fclose(readF);
 	}
 	else {
