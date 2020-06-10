@@ -38,12 +38,15 @@ int main(int numArgs, char *args[]) {
 				endOffset = (((block + 1)*((num + 3) / 4)) - 1);
 			}
 			else {
-				endOffset = num+2;
+				endOffset = num;
 			}
 		}
 
 		printf("Start index: %d\tEnd index: %d\t For block %d\n", startOffset, endOffset, block);
 		printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
+		
+		fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
+		
 		int i;
 		for (i = startOffset; i < endOffset; i++) {
 			int temp = i;
