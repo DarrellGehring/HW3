@@ -16,6 +16,10 @@ int main(int numArgs, char *args[]) {
 		return -1;
 	}
 
+	if (*args[1] == '1') {
+		execl("minMax", "minMax", "1", *args[2]);
+	}
+
 	printf("\n");
 	return 0;
 }

@@ -88,19 +88,17 @@ int main(int numArgs, char *args[]) {
 		else {
 			int min;
 			int max;
-			const char * filename = "test.txt";
-			FILE * ft = fopen(filename, "rb");
-			if (ft) {
+			if (readF) {
 				int pid = getpid();
-				fseek(ft, 0, SEEK_END); //go to end of file
-				long size = ftell(ft); //what byte in file am I at?
-				fseek(ft, 0, SEEK_SET); //go to beginning of file
+				fseek(readF, 0, SEEK_END); //go to end of file
+				long size = ftell(readF); //what byte in file am I at?
+				fseek(readF, 0, SEEK_SET); //go to beginning of file
 				int num = (int)size / (int)sizeof(int);
 				printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 				int i;
 				for (i = 0; i < num; i++) {
 					int temp = 0;
-					fread(&temp, sizeof(int), 1, ft);
+					fread(&temp, sizeof(int), 1, readF);
 					//printf("%i: %i\t", pid, temp);
 
 					if (i == 0) {
@@ -122,7 +120,7 @@ int main(int numArgs, char *args[]) {
 				}
 				printf("Min: %d Max: %d\n", min, max);
 
-				fclose(ft);
+				fclose(readF);
 			}
 			printf("\n");
 		}
