@@ -53,7 +53,9 @@ int main(int numArgs, char *args[]) {
 		int min;
 		int max;
 
-		for (int i = startOffset; i <= endOffset; i++) {
+		int i;
+
+		for (i = startOffset; i <= endOffset; i++) {
 			int temp = i;
 
 
