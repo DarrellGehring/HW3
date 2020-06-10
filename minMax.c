@@ -27,6 +27,7 @@ int main(int numArgs, char *args[]) {
 
 		int startOffset = 0;
 		int endOffset = num;
+		int block = 0;
 
 		if (*args[1] == '4') {
 			printf("Using 4 fork version");
