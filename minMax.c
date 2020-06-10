@@ -38,7 +38,7 @@ int main(int numArgs, char *args[]) {
 				endOffset = (((block + 1)*((num + 3) / 4)) - 1);
 			}
 			else {
-				endOffset = num+1;
+				endOffset = num+2;
 			}
 		}
 
