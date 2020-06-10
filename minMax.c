@@ -111,10 +111,12 @@ int main(int numArgs, char *args[]) {
 					}
 
 					if (temp < min) {
+						printf("Min was: %d Is now: %d\n", min, temp);
 						min = temp;
 					}
 
 					if (temp > max) {
+						printf("Max was: %d Is now: %d\n", max, temp);
 						max = temp;
 					}
 				}
