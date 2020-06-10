@@ -28,6 +28,7 @@ int main(int numArgs, char *args[]) {
 		int endOffset = num;
 
 		if (*args[1] == '4') {
+			printf("Using 4 fork version");
 			int block = *args[3];
 			startOffset = (block)*((num + 3) / 4); //Will produce index to start at 
 			
@@ -38,6 +39,8 @@ int main(int numArgs, char *args[]) {
 				endOffset = num;
 			}
 		}
+
+		wait(10);
 
 		printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 		int i;
