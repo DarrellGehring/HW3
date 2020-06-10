@@ -31,7 +31,7 @@ int main(int numArgs, char *args[]) {
 
 		if (*args[1] == '4') {
 			printf("Using 4 fork version");
-			int block = atoi(args[3]);
+			block = atoi(args[3]);
 			startOffset = (block)*((num + 3) / 4); //Will produce index to start at 
 			
 			if (block != 3) {
@@ -42,16 +42,15 @@ int main(int numArgs, char *args[]) {
 			}
 		}
 
-		printf("%d\n",args[1]);
 		printf("Start index: %d\tEnd index: %d\t For block %d\n", startOffset, endOffset, block);
 		printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 		int i;
-		/*for (i = startOffset; i < endOffset; i++) {
+		for (i = startOffset; i < endOffset; i++) {
 			int temp = i;
 			fread(&temp, sizeof(int), 1, readF);
 			printf("%i: %i : %d\t", pid, temp, i);
 		}
-		printf("Total numbers:%d Total Read: %d\n", num, i);*/
+		printf("Total numbers:%d Total Read: %d\n", num, i);
 		fclose(readF);
 	}
 	else {
