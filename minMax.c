@@ -61,7 +61,7 @@ int main(int numArgs, char *args[]) {
 			if (i == 0) {
 				printf("%i: %i : %d\t\n", pid, temp, i);
 			}
-			else if (i == endOffset-1) {
+			else if (i == endOffset) {
 				printf("%i: %i : %d\t\n", pid, temp, i);
 			}
 		}
