@@ -30,6 +30,7 @@ int main(int numArgs, char *args[]) {
 		close(0); //close stdin
 		close(cp[0]); //close pipe in
 		execl("minMax", "minMax", "1", *args[2], (char *)0);
+		close(cp[1]);
 		printf("Exec|| \n");
 	}
 
