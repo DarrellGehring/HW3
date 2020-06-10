@@ -45,6 +45,9 @@ int main(int numArgs, char *args[]) {
 		printf("Start index: %d\tEnd index: %d\t For block %d\n", startOffset, endOffset, block);
 		printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 		
+
+
+
 		fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
 
 		int i;
@@ -54,7 +57,13 @@ int main(int numArgs, char *args[]) {
 
 
 			fread(&temp, sizeof(int), 1, readF);
-			printf("%i: %i : %d\t", pid, temp, i);
+
+			if (i == 0) {
+				printf("%i: %i : %d\t", pid, temp, i);
+			}
+			else if (i == endOffset) {
+				printf("%i: %i : %d\t", pid, temp, i);
+			}
 		}
 		printf("Total numbers:%d Total Read: %d\n", num, i);
 		fclose(readF);
