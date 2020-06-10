@@ -7,7 +7,7 @@
 
 int main(int numArgs, char *args[]) {
 
-	const char * filename = *args[2];
+	const char filename = *args[2];
 
 	FILE * readF = fopen(filename, "rb");
 
@@ -27,7 +27,7 @@ int main(int numArgs, char *args[]) {
 			fread(&temp, sizeof(int), 1, readF);
 			printf("%i: %i\t", pid, temp);
 		}
-		fclose(ft);
+		fclose(readF);
 	}
 	else {
 		printf("Error: no file found with that name.\n");
