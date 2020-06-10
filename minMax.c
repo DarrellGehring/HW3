@@ -7,14 +7,14 @@
 
 int main(int numArgs, char *args[]) {
 
-	const char filename = *args[2];
+	const char *filename = args[2];
 
 	FILE * readF = fopen(filename, "rb");
 
 	if (readF) {
 		int pid = getpid();
 		fseek(readF, 0, SEEK_END); //go to end of file
-		long size = ftell(ft); //keep track of last byte in the file
+		long size = ftell(readF); //keep track of last byte in the file
 		fseek(readF, 0, SEEK_SET); //go to beginning of file
 
 		int num = (int)size / (int)sizeof(int); //How many total numbers in file
