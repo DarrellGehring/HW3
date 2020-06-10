@@ -10,7 +10,7 @@ int main(int argc, char * argv[])
 	srand(time(NULL));
 	if (ft) {
 		int i;
-		for (i = 0; i < 8; i++) {
+		for (i = 0; i < 1000000; i++) {
 			int randomnum = rand() % 1000000;
 			fwrite(&randomnum, sizeof(int), 1, ft);
 		}
