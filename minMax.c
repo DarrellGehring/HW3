@@ -31,7 +31,7 @@ int main(int numArgs, char *args[]) {
 
 		if (*args[1] == '4') {
 			printf("Using 4 fork version");
-			int block = *args[3];
+			int block = atoi(*args[3]);
 			startOffset = (block)*((num + 3) / 4); //Will produce index to start at 
 			
 			if (block != 3) {
