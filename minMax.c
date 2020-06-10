@@ -58,7 +58,7 @@ int main(int numArgs, char *args[]) {
 
 			fread(&temp, sizeof(int), 1, readF);
 
-			if (i == 0) {
+			if (i == startOffset) {
 				printf("%i: %i : %d\t\n", pid, temp, i);
 			}
 			else if (i == endOffset) {
