@@ -21,6 +21,7 @@ int main(int numArgs, char *args[]) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
 			pid_t subpid, parentpid;
+			int startOffset, endOffset, num;
 
 			int j;
 			for (j = 0; j < 4; j++) {
@@ -70,22 +71,19 @@ int main(int numArgs, char *args[]) {
 					write(pipes[i + 4][1], &min, sizeof(min));
 					write(pipes[i + 4][1], &max, sizeof(max));
 
-					printf("Subprocess: %d gave %d as min and %d as max\n", pid, min, max);
+					printf("Subprocess: %d gave %d as min and %d as max\n", subpid, min, max);
 					printf("Total numbers:%d Total Read: %d\n", num, i);
 					printf("Min:%d Max: %d\n", min, max);
 					_exit;
 				}
 				
 
-				int parentpid = getpid();
+				parentpid = getpid();
 				fseek(readF, 0, SEEK_END); //go to end of file
 				long size = ftell(readF); //keep track of last byte in the file
 				fseek(readF, 0, SEEK_SET); //go to beginning of file
 
-				int num = (int)size / (int)sizeof(int); //How many total numbers in file
-
-				int startOffset;
-				int endOffset;
+				num = (int)size / (int)sizeof(int); //How many total numbers in file
 
 				printf("Using 4 fork version");
 				block = atoi(args[3]);
