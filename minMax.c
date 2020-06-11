@@ -29,6 +29,8 @@ int main(int numArgs, char *args[]) {
 				pipe(pipes[j]);
 			}
 
+			int minMin = 0, maxMax = 0;
+
 			int k;
 			for (k = 0; k < 4; k++) {
 
@@ -92,6 +94,14 @@ int main(int numArgs, char *args[]) {
 
 					printf("[k=%d] (CHILD) Subprocess: %d gave %d as min and %d as max\n", k, subpid, min, max);
 					printf("[k=%d] Min:%d Max: %d\n", k, min, max);
+
+					if (min < minMin) {
+						minMin = min;
+					}
+					if (max < maxMax) {
+						maxMax = max;
+					}
+
 					_exit;
 				}
 				
@@ -161,6 +171,8 @@ int main(int numArgs, char *args[]) {
 					printf("[k=%d] Parent(%d): Error Reading Max from child.\n", k, parentpid);
 				}
 			}
+
+			printf("MinMin: %d MaxMax: %d\n", minMin, maxMax);
 		}
 		else {
 			int min;
@@ -199,6 +211,9 @@ int main(int numArgs, char *args[]) {
 
 				fclose(readF);
 			}
+
+			
+
 			printf("\n");
 		}
 	}
