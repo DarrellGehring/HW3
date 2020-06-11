@@ -16,7 +16,7 @@ int main(int numArgs, char *args[]) {
 		return -1;
 	}
 
-	//printf(*args[2]);
+	printf(*args[1]);
 
 	int cp[2];
 
