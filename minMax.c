@@ -80,33 +80,33 @@ int main(int numArgs, char *args[]) {
 					_exit;
 				}
 				
-				printf("A\n");
+				//printf("A\n");
 
 
 				parentpid = getpid();
 				fseek(readF, 0, SEEK_END); //go to end of file
 
-				printf("B\n");
+				//printf("B\n");
 
 				long size = ftell(readF); //keep track of last byte in the file
 
-				printf("C\n");
+				//printf("C\n");
 
 				fseek(readF, 0, SEEK_SET); //go to beginning of file
 
-				printf("D\n");
+				//printf("D\n");
 
 				num = (int)size / (int)sizeof(int); //How many total numbers in file
 
-				printf("E\n");
+				//printf("E\n");
 
 				startOffset = (k)*((num + 3) / 4); //Will produce index to start at 
 
-				printf("F\n");
+				//printf("F\n");
 
 				printf("Determined startOffset %d\n", startOffset);
 
-				printf("G\n");
+				//printf("G\n");
 
 				if (k != 3) {
 					endOffset = (((k + 1)*((num + 3) / 4)) - 1);
