@@ -7,13 +7,14 @@
 
 int main(int numArgs, char *args[]) {
 	
+	/*
 	int counter;
 	for (counter = 0; counter < numArgs; counter++)
 		printf("argv[%2d]: %s\n", counter, args[counter]);
 
 	return 0;
-
-
+	*/
+	
 	if (numArgs != 3) {
 		printf("Error: requires two arguments.\n");
 		return -1;
@@ -24,7 +25,7 @@ int main(int numArgs, char *args[]) {
 		return -1;
 	}
 
-	printf(*args[1]);
+	printf("FilePath = '%s'\n", args[2]);
 
 	int cp[2];
 
