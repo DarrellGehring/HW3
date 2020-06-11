@@ -22,7 +22,7 @@ int main(int numArgs, char *args[]) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
 			pid_t subpid, parentpid;
-			int startOffset, endOffset, num, block, min, max, sentLen;
+			int startOffset = 0, endOffset, num, block, min, max, sentLen;
 
 			int j;
 			for (j = 0; j < 4; j++) {
@@ -36,7 +36,7 @@ int main(int numArgs, char *args[]) {
 				//printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 				if ((subpid = fork()) == 0) {
 					printf("Here1");
-					//sentLen = read(pipes[k][0], &startOffset, sizeof(startOffset));
+					sentLen = read(pipes[k][0], &startOffset, sizeof(startOffset));
 					printf("Here2");
 
 					if (sentLen > 0) {
@@ -81,13 +81,25 @@ int main(int numArgs, char *args[]) {
 					_exit;
 				}
 				
+				printf("A\n");
+
 
 				parentpid = getpid();
 				fseek(readF, 0, SEEK_END); //go to end of file
+
+				printf("B\n");
+
 				long size = ftell(readF); //keep track of last byte in the file
+
+				printf("C\n");
+
 				fseek(readF, 0, SEEK_SET); //go to beginning of file
 
+				printf("D\n");
+
 				num = (int)size / (int)sizeof(int); //How many total numbers in file
+
+				printf("E\n");
 
 				printf("Using 4 fork version");
 				block = atoi(args[3]);
