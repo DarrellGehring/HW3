@@ -133,7 +133,7 @@ int main(int numArgs, char *args[]) {
 				printf("Determined endoffset %d\n", endOffset);
 
 				printf("Parent(%d): Sending file position to child\n", parentpid);
-				if (write(pipes[k][1], &endOffset, sizeof(endOffset)) < 0) {
+				if (write(pipes[k][1], &endOffset, sizeof(endOffset) < 0) {
 					printf("First Write Failed");
 				}
 				if (write(pipes[k][1], &startOffset, sizeof(startOffset) < 0) {
