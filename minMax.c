@@ -22,7 +22,7 @@ int main(int numArgs, char *args[]) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
 			pid_t subpid, parentpid;
-			int startOffset = 0, endOffset, num, min, max, sentLen;
+			int startOffset = 0, endOffset = 0, num, min, max, bytesRead = 0;
 
 			int j;
 			for (j = 0; j < 4; j++) {
@@ -33,11 +33,27 @@ int main(int numArgs, char *args[]) {
 			for (k = 0; k < 4; k++) {
 
 				if ((subpid = fork()) == 0) {
-					printf("Here1");
-					sentLen = read(pipes[k][0], &startOffset, sizeof(startOffset));
-					printf("Here2");
-
-					if (sentLen > 0) {
+					printf("(CHILD) Reading startOffset");
+					bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
+					if (bytesRead <= 0) {
+						printf("(CHILD) Failed to read startOffset");
+						_exit;
+					}
+					else {
+						printf("(CHILD) Read startOffset = %d", startOffset);
+					}
+										
+					printf("(CHILD) Reading endOffset");
+					bytesRead = read(pipes[k][0], &endOffset, sizeof(endOffset));
+					if (bytesRead <= 0) {
+						printf("(CHILD) Failed to read endOffset");
+						_exit;
+					}
+					else {
+						printf("(CHILD) Read endOffset = %d", endOffset);
+					}
+					
+					if (bytesRead > 0) {
 						subpid = getpid();
 
 						fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
@@ -53,11 +69,10 @@ int main(int numArgs, char *args[]) {
 							if (i == startOffset) {
 								min = temp;
 								max = temp;
-								//printf("%i: %i : %d\t\n", pid, temp, i);
-
+								printf("%i: %i : %d\t\n", pid, temp, i);
 							}
 							else if (i == endOffset) {
-								//printf("%i: %i : %d\t\n", pid, temp, i);
+								printf("%i: %i : %d\t\n", pid, temp, i);
 							}
 
 							if (temp < min) {
@@ -68,14 +83,14 @@ int main(int numArgs, char *args[]) {
 								max = temp;
 							}
 
-							printf("%i: %i : %d\t\n", subpid, temp, i);
+							printf("(CHILD) %i: %i : %d\t\n", subpid, temp, i);
 						}
 					}
 
 					write(pipes[k + 4][1], &min, sizeof(min));
 					write(pipes[k + 4][1], &max, sizeof(max));
 
-					printf("Subprocess: %d gave %d as min and %d as max\n", subpid, min, max);
+					printf("(CHILD) Subprocess: %d gave %d as min and %d as max\n", subpid, min, max);
 					printf("Min:%d Max: %d\n", min, max);
 					_exit;
 				}
@@ -124,6 +139,8 @@ int main(int numArgs, char *args[]) {
 				if (write(pipes[k][1], &startOffset, sizeof(startOffset) < 0) {
 					prinntf("Second Write Failed");
 				}
+
+				printf("Waiting for child read");
 
 				int len1 = read(pipes[k + 4][0], &min, sizeof(min));
 				if (len1 > 0) {
