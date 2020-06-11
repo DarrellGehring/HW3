@@ -19,11 +19,12 @@ int main(int numArgs, char *args[]) {
 
 	if (readF) {
 		if (*args[1] == '4') {
-			int pipes[8][2] //Make 8 pipes with in and out, each for path of communication to or from
+			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
+			pid_t subpid, parentpid;
 
 			int j;
 			for (j = 0; j < 4; j++) {
-				pipe(pipes[i]);
+				pipe(pipes[j]);
 			}
 
 			int k;
