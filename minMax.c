@@ -7,6 +7,7 @@
 
 
 int main(int numArgs, char *args[]) {
+	printf("Here0");
 
 	const char *filename = args[2];
 	
