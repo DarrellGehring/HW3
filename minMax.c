@@ -22,7 +22,7 @@ int main(int numArgs, char *args[]) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
 			pid_t subpid, parentpid;
-			int startOffset = 0, endOffset, num, block, min, max, sentLen;
+			int startOffset = 0, endOffset, num, min, max, sentLen;
 
 			int j;
 			for (j = 0; j < 4; j++) {
@@ -102,7 +102,6 @@ int main(int numArgs, char *args[]) {
 				printf("E\n");
 
 				printf("Using 4 fork version");
-				block = atoi(args[3]);
 
 				printf("F\n");
 
@@ -114,7 +113,7 @@ int main(int numArgs, char *args[]) {
 
 				printf("H\n");
 
-				if (block != 3) {
+				if (k != 3) {
 					endOffset = (((k + 1)*((num + 3) / 4)) - 1);
 				}
 				else {
