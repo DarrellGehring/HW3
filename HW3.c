@@ -16,6 +16,8 @@ int main(int numArgs, char *args[]) {
 		return -1;
 	}
 
+	printf(*args[2]);
+
 	int cp[2];
 
 	if (*args[1] == '1') {
@@ -26,7 +28,7 @@ int main(int numArgs, char *args[]) {
 		}
 
 		char* filePath = *args[2];
-		printf(*args[2]);
+		
 
 		int pid = fork();
 		if (pid == 0)
