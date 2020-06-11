@@ -103,9 +103,16 @@ int main(int numArgs, char *args[]) {
 
 				printf("Using 4 fork version");
 				block = atoi(args[3]);
+
+				printf("F\n");
+
 				startOffset = (k)*((num + 3) / 4); //Will produce index to start at 
 
+				printf("G\n");
+
 				printf("Determined startOffset %d", startOffset);
+
+				printf("H\n");
 
 				if (block != 3) {
 					endOffset = (((k + 1)*((num + 3) / 4)) - 1);
