@@ -43,12 +43,12 @@ int main(int numArgs, char *args[]) {
 		if (pid == 0)
 		{
 			printf("this is the child. not the original !!!!\n");
-			printf(filePath);
+			printf(args[2]);
 			close(1); //close stdout
 			dup2(cp[1], 1); //move stdout to pipe of cp[1]
 			close(0); //close stdin
 			close(cp[0]); //close pipe in
-			int retVal = execl("minMax", "minMax", "1", (char *)0);  //note: All the arguments in exec have to be strings.
+			int retVal = execl("minMax", "minMax", "1", (char *)filePath);  //note: All the arguments in exec have to be strings.
 
 			if (retVal == -1) {
 				printf("exec was unsuccessful");
