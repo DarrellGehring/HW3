@@ -21,7 +21,7 @@ int main(int numArgs, char *args[]) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
 			pid_t subpid, parentpid;
-			int startOffset, endOffset, num, block, min, max;
+			int startOffset, endOffset, num, block, min, max, sentLen;
 
 			int j;
 			for (j = 0; j < 4; j++) {
@@ -34,6 +34,9 @@ int main(int numArgs, char *args[]) {
 				//printf("Start index: %d\tEnd index: %d\t For block %d\n", startOffset, endOffset, block);
 				//printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 				if((subpid = fork()) == 0) {
+
+					sentLen = read(pipes[i][0], &startOffset, sizeof(startOffset));
+
 					subpid = getpid();
 
 					fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
