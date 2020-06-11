@@ -41,12 +41,9 @@ int main(int numArgs, char *args[]) {
 					printf("Here2");
 
 					if (sentLen > 0) {
-
-						readF2 = fopen(filename, "rb");
-
 						subpid = getpid();
 
-						fseek(readF2, (startOffset*(int)sizeof(int)), SEEK_SET);
+						fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
 
 						printf("Child(%d): Recieved position: %d\n", subpid, startOffset);
 						
