@@ -137,7 +137,7 @@ int main(int numArgs, char *args[]) {
 					printf("First Write Failed");
 				}
 				if (write(pipes[k][1], &startOffset, sizeof(startOffset)) < 0) {
-					prinntf("Second Write Failed");
+					printf("Second Write Failed");
 				}
 
 				printf("Waiting for child read");
