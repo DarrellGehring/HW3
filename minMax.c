@@ -25,7 +25,7 @@ int main(int numArgs, char *args[]) {
 			int startOffset = 0, endOffset = 0, num, min, max;
 
 			int j;
-			for (j = 0; j < 4; j++) {
+			for (j = 0; j < 8; j++) {
 				pipe(pipes[j]);
 			}
 
