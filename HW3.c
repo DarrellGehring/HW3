@@ -33,6 +33,7 @@ int main(int numArgs, char *args[]) {
 		}
 
 		char* filePath = *args[2];
+		printf(filePath);
 
 		int pid = fork();
 		if (pid == 0)
