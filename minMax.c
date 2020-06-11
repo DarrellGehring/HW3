@@ -118,8 +118,12 @@ int main(int numArgs, char *args[]) {
 				printf("Determined endoffset %d\n", endOffset);
 
 				printf("Parent(%d): Sending file position to child\n", parentpid);
-				write(pipes[k][1], &endOffset, sizeof(endOffset));
-				write(pipes[k][1], &startOffset, sizeof(startOffset));
+				if (write(pipes[k][1], &endOffset, sizeof(endOffset)) < 0) {
+					printf("First Write Failed");
+				}
+				if (write(pipes[k][1], &startOffset, sizeof(startOffset) < 0) {
+					prinntf("Second Write Failed");
+				}
 
 				int len1 = read(pipes[k + 4][0], &min, sizeof(min));
 				if (len1 > 0) {
