@@ -33,42 +33,41 @@ int main(int numArgs, char *args[]) {
 
 				//printf("Start index: %d\tEnd index: %d\t For block %d\n", startOffset, endOffset, block);
 				//printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
-				if((subpid = fork()) == 0) {
+				if ((subpid = fork()) == 0) {
 
 					sentLen = read(pipes[i][0], &startOffset, sizeof(startOffset));
 
-					if (sentLen <= 0) {
-						printf("Issue getting startoffset");
-					}
+					if (sentLen > 0) {
 
-					subpid = getpid();
+						subpid = getpid();
 
-					fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
+						fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
 
-					printf("Child(%d): Recieved position: %d\n", subpid, startOffset);
+						printf("Child(%d): Recieved position: %d\n", subpid, startOffset);
 
-					int i;
-					for (i = startOffset; i <= endOffset; i++) {
-						int temp = i;
+						int i;
+						for (i = startOffset; i <= endOffset; i++) {
+							int temp = i;
 
-						fread(&temp, sizeof(int), 1, readF);
+							fread(&temp, sizeof(int), 1, readF);
 
-						if (i == startOffset) {
-							min = temp;
-							max = temp;
-							//printf("%i: %i : %d\t\n", pid, temp, i);
+							if (i == startOffset) {
+								min = temp;
+								max = temp;
+								//printf("%i: %i : %d\t\n", pid, temp, i);
 
-						}
-						else if (i == endOffset) {
-							//printf("%i: %i : %d\t\n", pid, temp, i);
-						}
+							}
+							else if (i == endOffset) {
+								//printf("%i: %i : %d\t\n", pid, temp, i);
+							}
 
-						if (temp < min) {
-							min = temp;
-						}
+							if (temp < min) {
+								min = temp;
+							}
 
-						if (temp > max) {
-							max = temp;
+							if (temp > max) {
+								max = temp;
+							}
 						}
 					}
 
