@@ -5,8 +5,6 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-#define die(e) do { fprintf(stderr, "%s\n", e); exit(EXIT_FAILURE); } while (0);
-
 int main(int numArgs, char *args[]) {
 	if (numArgs != 3) {
 		printf("Error: requires two arguments.\n");
