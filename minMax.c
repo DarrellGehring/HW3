@@ -56,7 +56,7 @@ int main(int numArgs, char *args[]) {
 							if (i == startOffset) {
 								min = temp;
 								max = temp;
-								printf("%i: %i : %d\t\n", pid, temp, i);
+								//printf("%i: %i : %d\t\n", pid, temp, i);
 
 							}
 							else if (i == endOffset) {
