@@ -94,18 +94,6 @@ int main(int numArgs, char *args[]) {
 
 					printf("[k=%d] (CHILD) Subprocess: %d gave %d as min and %d as max\n", k, subpid, min, max);
 					printf("[k=%d] Min:%d Max: %d\n", k, min, max);
-
-					if (min < minMin || minMin == -1) {
-						printf("[k=%d] Set minMin = %d", k, min);
-						minMin = min;
-					}
-					if (max < maxMax || maxMax == -1) {
-						printf("[k=%d] Set maxMax = %d", k, max);
-						maxMax = max;
-					}
-
-					printf("End For K - MinMin: %d MaxMax: %d\n", minMin, maxMax);
-
 					_exit;
 				}
 				
@@ -174,7 +162,17 @@ int main(int numArgs, char *args[]) {
 				} else {
 					printf("[k=%d] Parent(%d): Error Reading Max from child.\n", k, parentpid);
 				}
+
+				if (min < minMin || minMin == -1) {
+					printf("[k=%d] Set minMin = %d", k, min);
+					minMin = min;
+				}
+				if (max < maxMax || maxMax == -1) {
+					printf("[k=%d] Set maxMax = %d", k, max);
+					maxMax = max;
+				}
 			}
+			printf("Min: %d Max: %d\n", minMin, maxMax);
 		}
 		else {
 			int min;
