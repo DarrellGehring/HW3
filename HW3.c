@@ -20,11 +20,6 @@ int main(int numArgs, char *args[]) {
 
 	int cp[2];
 
-	if (pipe(cp) < 0) {
-		printf("didn't work, couldn't not establish pipe.\n");
-		return -1;
-	}
-
 	if (*args[1] == '1') {
 		if (pipe(cp) < 0)
 		{
