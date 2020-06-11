@@ -119,7 +119,7 @@ int main(int numArgs, char *args[]) {
 
 				//printf("F\n");
 
-				printf("Determined startOffset %d\n", startOffset);
+				printf("[k=%d] Determined startOffset %d\n", k, startOffset);
 
 				//printf("G\n");
 
@@ -130,35 +130,35 @@ int main(int numArgs, char *args[]) {
 					endOffset = num - 1;
 				}
 
-				printf("Determined endoffset %d\n", endOffset);
+				printf("[k=%d] Determined endoffset %d\n", k, endOffset);
 
-				printf("Parent(%d): Sending startOffset to child\n", parentpid);
+				printf("[k=%d] Parent(%d): Sending startOffset to child\n", k, parentpid);
 				if (write(pipes[k][1], &startOffset, sizeof(startOffset)) < 0) {
-					printf("Send of startOffset Failed!");
+					printf("[k=%d] Send of startOffset Failed!", k);
 					_exit;
 				}
 				
-				printf("Parent(%d): Sending endOffset to child\n", parentpid);
+				printf("[k=%d] Parent(%d): Sending endOffset to child\n", k, parentpid);
 				if (write(pipes[k][1], &endOffset, sizeof(endOffset)) < 0) {
-					printf("Send of endOffset Failed!");
+					printf("[k=%d] Send of endOffset Failed!", k);
 					_exit;
 				}
 								
-				printf("Waiting for child read");
+				printf("[k=%d] Waiting for child read", k);
 
 				int bytesRead = read(pipes[k + 4][0], &min, sizeof(min));
 				if (bytesRead > 0) {
-					printf("Parent(%d): Recieved %d from child as min.\n", parentpid, min);
+					printf("[k=%d] Parent(%d): Recieved %d from child as min.\n", k, parentpid, min);
 				}
 				else {
-					printf("Parent(%d): Error Reading Min from child.\n", parentpid);
+					printf("[k=%d] Parent(%d): Error Reading Min from child.\n", k, parentpid);
 				}
 
 				bytesRead = read(pipes[k + 4][0], &max, sizeof(max));
 				if (bytesRead > 0) {
-					printf("Parent(%d): Recieved %d from child as max.\n", parentpid, max);
+					printf("[k=%d] Parent(%d): Recieved %d from child as max.\n", k, parentpid, max);
 				} else {
-					printf("Parent(%d): Error Reading Max from child.\n", parentpid);
+					printf("[k=%d] Parent(%d): Error Reading Max from child.\n", k, parentpid);
 				}
 			}
 		}
