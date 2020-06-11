@@ -8,8 +8,8 @@
 int main(int numArgs, char *args[]) {
 	
 	int counter;
-	for (counter = 0; counter < argc; counter++)
-		printf("argv[%2d]: %s\n", counter, argv[counter]);
+	for (counter = 0; counter < numArgs; counter++)
+		printf("argv[%2d]: %s\n", counter, args[counter]);
 
 	return 0;
 
