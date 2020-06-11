@@ -51,7 +51,7 @@ int main(int numArgs, char *args[]) {
 			while (read(cp[0], &ch, 1) == 1)
 			{
 				printf("%c", ch);
-				//write(1, &ch, 1);
+				write(1, &ch, 1);
 				//outcount++;
 			}
 			printf("all done.\n");
