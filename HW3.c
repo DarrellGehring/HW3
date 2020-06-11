@@ -35,7 +35,7 @@ int main(int numArgs, char *args[]) {
 		int pid = fork();
 		if (pid == 0)
 		{
-			printf("this is the child. not the original\n");
+			printf("this is the child. not the original !!!!\n");
 			close(1); //close stdout
 			dup2(cp[1], 1); //move stdout to pipe of cp[1]
 			close(0); //close stdin
