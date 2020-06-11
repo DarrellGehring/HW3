@@ -36,7 +36,7 @@ int main(int numArgs, char *args[]) {
 				//printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 				if ((subpid = fork()) == 0) {
 					printf("Here1");
-					sentLen = read(pipes[k][0], &startOffset, sizeof(startOffset));
+					//sentLen = read(pipes[k][0], &startOffset, sizeof(startOffset));
 					printf("Here2");
 
 					if (sentLen > 0) {
