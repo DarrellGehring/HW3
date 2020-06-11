@@ -104,6 +104,8 @@ int main(int numArgs, char *args[]) {
 						maxMax = max;
 					}
 
+					printf("End For K - MinMin: %d MaxMax: %d\n", minMin, maxMax);
+
 					_exit;
 				}
 				
@@ -173,9 +175,6 @@ int main(int numArgs, char *args[]) {
 					printf("[k=%d] Parent(%d): Error Reading Max from child.\n", k, parentpid);
 				}
 			}
-
-			printf("End For K - MinMin: %d MaxMax: %d\n", minMin, maxMax);
-
 		}
 		else {
 			int min;
