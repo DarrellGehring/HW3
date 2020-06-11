@@ -56,7 +56,7 @@ int main(int numArgs, char *args[]) {
 							if (i == startOffset) {
 								min = temp;
 								max = temp;
-								//printf("%i: %i : %d\t\n", pid, temp, i);
+								printf("%i: %i : %d\t\n", pid, temp, i);
 
 							}
 							else if (i == endOffset) {
@@ -70,6 +70,8 @@ int main(int numArgs, char *args[]) {
 							if (temp > max) {
 								max = temp;
 							}
+
+							printf("%i: %i : %d\t\n", subpid, temp, i);
 						}
 					}
 
@@ -124,8 +126,7 @@ int main(int numArgs, char *args[]) {
 				write(pipes[k][1], &startOffset, sizeof(startOffset));
 
 				int len = read(pipes[k + 4][0], &min, sizeof(min));
-				if (len > 0)
-				{
+				if (len > 0) {
 					printf("Parent(%d): Recieved %d from child as min.\n", parentpid, min);
 					printf("Parent(%d): Recieved %d from child as max.\n", parentpid, max);
 				}
