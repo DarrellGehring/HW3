@@ -127,11 +127,16 @@ int main(int numArgs, char *args[]) {
 				printf("Parent(%d): Sending file position to child\n", parentpid);
 				write(pipes[k][1], &startOffset, sizeof(startOffset));
 
-				int len = read(pipes[k + 4][0], &min, sizeof(min));
-				if (len > 0) {
+				int len1 = read(pipes[k + 4][0], &min, sizeof(min));
+				if (len1 > 0) {
 					printf("Parent(%d): Recieved %d from child as min.\n", parentpid, min);
+				}
+
+				int len2 = read(pipes[k + 4][0], &max, sizeof(max));
+				if (len2 > 0) {
 					printf("Parent(%d): Recieved %d from child as max.\n", parentpid, max);
 				}
+
 				else
 				{
 					printf("Parent(%d): Error with len\n", parentpid);
