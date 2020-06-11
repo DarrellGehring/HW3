@@ -21,7 +21,7 @@ int main(int numArgs, char *args[]) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
 			pid_t subpid, parentpid;
-			int startOffset, endOffset, num;
+			int startOffset, endOffset, num, block;
 
 			int j;
 			for (j = 0; j < 4; j++) {
@@ -96,14 +96,14 @@ int main(int numArgs, char *args[]) {
 					endOffset = num - 1;
 				}
 
-				printf("Parent(%d): Sending file position to child\n", pid);
+				printf("Parent(%d): Sending file position to child\n", parentpid);
 				write(fd[k][1], &startOffset, sizeof(startOffset));
 
 				int len = read(pipes[i + numchild][0], &total, sizeof(total));
 				if (len > 0)
 				{
-					printf("Parent(%d): Recieved %d from child as min.\n", pid, min);
-					printf("Parent(%d): Recieved %d from child as max.\n", pid, max);
+					printf("Parent(%d): Recieved %d from child as min.\n", parentpid, min);
+					printf("Parent(%d): Recieved %d from child as max.\n", parentpid, max);
 				}
 				else
 				{
