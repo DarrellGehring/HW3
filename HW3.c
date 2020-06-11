@@ -39,6 +39,7 @@ int main(int numArgs, char *args[]) {
 		char* filePath = args[2];
 		
 
+
 		int pid = fork();
 		if (pid == 0)
 		{
