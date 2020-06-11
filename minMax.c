@@ -47,7 +47,6 @@ int main(int numArgs, char *args[]) {
 
 						printf("Child(%d): Recieved position: %d\n", subpid, startOffset);
 
-						int i;
 						for (i = startOffset; i <= endOffset; i++) {
 							int temp = i;
 
