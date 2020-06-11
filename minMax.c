@@ -22,8 +22,7 @@ int main(int numArgs, char *args[]) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
 			pid_t subpid, parentpid;
-			int startOffset = 0, endOffset, num, min, max, sentLen;
-			FILE * readF2;
+			int startOffset, endOffset, num, min, max, sentLen;
 
 			int j;
 			for (j = 0; j < 4; j++) {
@@ -33,8 +32,6 @@ int main(int numArgs, char *args[]) {
 			int k;
 			for (k = 0; k < 4; k++) {
 
-				//printf("Start index: %d\tEnd index: %d\t For block %d\n", startOffset, endOffset, block);
-				//printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 				if ((subpid = fork()) == 0) {
 					printf("Here1");
 					sentLen = read(pipes[k][0], &startOffset, sizeof(startOffset));
@@ -102,17 +99,13 @@ int main(int numArgs, char *args[]) {
 
 				printf("E\n");
 
-				printf("Using 4 fork version");
+				startOffset = (k)*((num + 3) / 4); //Will produce index to start at 
 
 				printf("F\n");
 
-				startOffset = (k)*((num + 3) / 4); //Will produce index to start at 
-
-				printf("G\n");
-
 				printf("Determined startOffset %d", startOffset);
 
-				printf("H\n");
+				printf("G\n");
 
 				if (k != 3) {
 					endOffset = (((k + 1)*((num + 3) / 4)) - 1);
