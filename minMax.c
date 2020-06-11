@@ -29,7 +29,7 @@ int main(int numArgs, char *args[]) {
 				pipe(pipes[j]);
 			}
 
-			int minMin = 0, maxMax = 0;
+			int minMin = -1, maxMax = -1;
 
 			int k;
 			for (k = 0; k < 4; k++) {
@@ -95,10 +95,10 @@ int main(int numArgs, char *args[]) {
 					printf("[k=%d] (CHILD) Subprocess: %d gave %d as min and %d as max\n", k, subpid, min, max);
 					printf("[k=%d] Min:%d Max: %d\n", k, min, max);
 
-					if (min < minMin) {
+					if (min < minMin || minMin == -1) {
 						minMin = min;
 					}
-					if (max < maxMax) {
+					if (max < maxMax || maxMax == -1) {
 						maxMax = max;
 					}
 
@@ -172,7 +172,8 @@ int main(int numArgs, char *args[]) {
 				}
 			}
 
-			printf("MinMin: %d MaxMax: %d\n", minMin, maxMax);
+			printf("End For K - MinMin: %d MaxMax: %d\n", minMin, maxMax);
+
 		}
 		else {
 			int min;
