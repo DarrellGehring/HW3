@@ -96,9 +96,11 @@ int main(int numArgs, char *args[]) {
 					printf("[k=%d] Min:%d Max: %d\n", k, min, max);
 
 					if (min < minMin || minMin == -1) {
+						printf("[k=%d] Set minMin = %d", k, min);
 						minMin = min;
 					}
 					if (max < maxMax || maxMax == -1) {
+						printf("[k=%d] Set maxMax = %d", k, max);
 						maxMax = max;
 					}
 
