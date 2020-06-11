@@ -42,7 +42,8 @@ int main(int numArgs, char *args[]) {
 
 						fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
 
-						printf("Child(%d): Recieved position: %d\n", subpid, startOffset);
+						printf("Child(%d): Recieved start position: %d\n", subpid, startOffset);
+						printf("Child(%d): Recieved end position: %d\n", subpid, endOffset);
 						
 						int i;
 						for (i = startOffset; i <= endOffset; i++) {
@@ -128,10 +129,7 @@ int main(int numArgs, char *args[]) {
 				int len2 = read(pipes[k + 4][0], &max, sizeof(max));
 				if (len2 > 0) {
 					printf("Parent(%d): Recieved %d from child as max.\n", parentpid, max);
-				}
-
-				else
-				{
+				} else {
 					printf("Parent(%d): Error with len\n", parentpid);
 				}
 			}
