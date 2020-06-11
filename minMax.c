@@ -21,7 +21,7 @@ int main(int numArgs, char *args[]) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
 			pid_t subpid, parentpid;
-			int startOffset, endOffset, num, block;
+			int startOffset, endOffset, num, block, min, max;
 
 			int j;
 			for (j = 0; j < 4; j++) {
@@ -37,9 +37,6 @@ int main(int numArgs, char *args[]) {
 					subpid = getpid();
 
 					fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
-
-					int min;
-					int max;
 
 					printf("Child(%d): Recieved position: %d\n", subpid, startOffset);
 
@@ -97,9 +94,9 @@ int main(int numArgs, char *args[]) {
 				}
 
 				printf("Parent(%d): Sending file position to child\n", parentpid);
-				write(fd[k][1], &startOffset, sizeof(startOffset));
+				write(pipes[k][1], &startOffset, sizeof(startOffset));
 
-				int len = read(pipes[i + numchild][0], &total, sizeof(total));
+				int len = read(pipes[k + numchild][0], &min, sizeof(min));
 				if (len > 0)
 				{
 					printf("Parent(%d): Recieved %d from child as min.\n", parentpid, min);
@@ -107,7 +104,7 @@ int main(int numArgs, char *args[]) {
 				}
 				else
 				{
-					printf("Parent(%d): Error with len\n", pid);
+					printf("Parent(%d): Error with len\n", parentpid);
 				}
 
 				fclose(readF);
