@@ -172,8 +172,8 @@ int main(int numArgs, char *args[]) {
 					maxMax = max;
 				}
 			}
-			wait(NULL);
-			printf("Min: %d Max: %d\n", minMin, maxMax);
+			waitpid(0);
+			printf("Min: %d Max: %d\n", min, max);
 		}
 		else {
 			int min;
