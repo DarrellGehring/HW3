@@ -150,7 +150,7 @@ int main(int numArgs, char *args[]) {
 					printf("Parent(%d): Error Reading Min from child.\n", parentpid);
 				}
 
-				int bytesRead = read(pipes[k + 4][0], &max, sizeof(max));
+				bytesRead = read(pipes[k + 4][0], &max, sizeof(max));
 				if (bytesRead > 0) {
 					printf("Parent(%d): Recieved %d from child as max.\n", parentpid, max);
 				} else {
