@@ -171,9 +171,7 @@ int main(int numArgs, char *args[]) {
 					printf("[k=%d] Set maxMax = %d", k, max);
 					maxMax = max;
 				}
-				_exit;
 			}
-			wait(NULL);
 			printf("Min: %d Max: %d\n", min, max);
 		}
 		else {
