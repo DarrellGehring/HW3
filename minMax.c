@@ -19,71 +19,100 @@ int main(int numArgs, char *args[]) {
 
 	if (readF) {
 		if (*args[1] == '4') {
-			int pid = getpid();
-			fseek(readF, 0, SEEK_END); //go to end of file
-			long size = ftell(readF); //keep track of last byte in the file
-			fseek(readF, 0, SEEK_SET); //go to beginning of file
+			int pipes[8][2] //Make 8 pipes with in and out, each for path of communication to or from
 
-			int num = (int)size / (int)sizeof(int); //How many total numbers in file
+			int j;
+			for (j = 0; j < 4; j++) {
+				pipe(pipes[i]);
+			}
 
-			int startOffset = 0;
-			int endOffset = num - 1;
-			int block = 0;
+			int k;
+			for (k = 0; k < 4; k++) {
 
-			if (*args[1] == '4') {
+				//printf("Start index: %d\tEnd index: %d\t For block %d\n", startOffset, endOffset, block);
+				//printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
+				if((subpid = fork()) == 0) {
+					subpid = getpid();
+
+					fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
+
+					int min;
+					int max;
+
+					printf("Child(%d): Recieved position: %d\n", subpid, startOffset);
+
+					int i;
+					for (i = startOffset; i <= endOffset; i++) {
+						int temp = i;
+
+						fread(&temp, sizeof(int), 1, readF);
+
+						if (i == startOffset) {
+							min = temp;
+							max = temp;
+							//printf("%i: %i : %d\t\n", pid, temp, i);
+
+						}
+						else if (i == endOffset) {
+							//printf("%i: %i : %d\t\n", pid, temp, i);
+						}
+
+						if (temp < min) {
+							min = temp;
+						}
+
+						if (temp > max) {
+							max = temp;
+						}
+					}
+
+					write(pipes[i + 4][1], &min, sizeof(min));
+					write(pipes[i + 4][1], &max, sizeof(max));
+
+					printf("Subprocess: %d gave %d as min and %d as max\n", pid, min, max);
+					printf("Total numbers:%d Total Read: %d\n", num, i);
+					printf("Min:%d Max: %d\n", min, max);
+					_exit;
+				}
+				
+
+				int parentpid = getpid();
+				fseek(readF, 0, SEEK_END); //go to end of file
+				long size = ftell(readF); //keep track of last byte in the file
+				fseek(readF, 0, SEEK_SET); //go to beginning of file
+
+				int num = (int)size / (int)sizeof(int); //How many total numbers in file
+
+				int startOffset;
+				int endOffset;
+
 				printf("Using 4 fork version");
 				block = atoi(args[3]);
-				startOffset = (block)*((num + 3) / 4); //Will produce index to start at 
+				startOffset = (k)*((num + 3) / 4); //Will produce index to start at 
 
 				if (block != 3) {
-					endOffset = (((block + 1)*((num + 3) / 4)) - 1);
+					endOffset = (((k + 1)*((num + 3) / 4)) - 1);
 				}
 				else {
 					endOffset = num - 1;
 				}
+
+				printf("Parent(%d): Sending file position to child\n", pid);
+				write(fd[k][1], &startOffset, sizeof(startOffset));
+
+				int len = read(pipes[i + numchild][0], &total, sizeof(total));
+				if (len > 0)
+				{
+					printf("Parent(%d): Recieved %d from child as min.\n", pid, min);
+					printf("Parent(%d): Recieved %d from child as max.\n", pid, max);
+				}
+				else
+				{
+					printf("Parent(%d): Error with len\n", pid);
+				}
+
+				fclose(readF);
 			}
-
-			printf("Start index: %d\tEnd index: %d\t For block %d\n", startOffset, endOffset, block);
-			printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
-
-
-
-
-			fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
-
-			int min;
-			int max;
-
-			int i;
-
-			for (i = startOffset; i <= endOffset; i++) {
-				int temp = i;
-
-
-
-				fread(&temp, sizeof(int), 1, readF);
-
-				if (i == startOffset) {
-					min = temp;
-					max = temp;
-					//printf("%i: %i : %d\t\n", pid, temp, i);
-
-				}
-				else if (i == endOffset) {
-					//printf("%i: %i : %d\t\n", pid, temp, i);
-				}
-
-				if (temp < min) {
-					min = temp;
-				}
-
-				if (temp > max) {
-					max = temp;
-				}
-			}
-			printf("Total numbers:%d Total Read: %d\n", num, i);
-			printf("Min:%d Max: %d\n", min, max);
-			fclose(readF);
 		}
 		else {
 			int min;
