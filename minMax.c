@@ -86,6 +86,8 @@ int main(int numArgs, char *args[]) {
 				block = atoi(args[3]);
 				startOffset = (k)*((num + 3) / 4); //Will produce index to start at 
 
+				printf("Determined startOffset %d", startOffset);
+
 				if (block != 3) {
 					endOffset = (((k + 1)*((num + 3) / 4)) - 1);
 				}
