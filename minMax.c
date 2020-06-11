@@ -35,8 +35,6 @@ int main(int numArgs, char *args[]) {
 				//printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 				if ((subpid = fork()) == 0) {
 
-					int i;
-
 					sentLen = read(pipes[k][0], &startOffset, sizeof(startOffset));
 
 					if (sentLen > 0) {
@@ -46,7 +44,8 @@ int main(int numArgs, char *args[]) {
 						fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
 
 						printf("Child(%d): Recieved position: %d\n", subpid, startOffset);
-
+						
+						int i;
 						for (i = startOffset; i <= endOffset; i++) {
 							int temp = i;
 
@@ -72,11 +71,10 @@ int main(int numArgs, char *args[]) {
 						}
 					}
 
-					write(pipes[i + 4][1], &min, sizeof(min));
-					write(pipes[i + 4][1], &max, sizeof(max));
+					write(pipes[k + 4][1], &min, sizeof(min));
+					write(pipes[k + 4][1], &max, sizeof(max));
 
 					printf("Subprocess: %d gave %d as min and %d as max\n", subpid, min, max);
-					printf("Total numbers:%d Total Read: %d\n", num, i);
 					printf("Min:%d Max: %d\n", min, max);
 					_exit;
 				}
