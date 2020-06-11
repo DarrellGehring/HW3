@@ -22,7 +22,7 @@ int main(int numArgs, char *args[]) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
 			pid_t subpid, parentpid;
-			int startOffset = 0, endOffset = 0, num, min, max, bytesRead = 0;
+			int startOffset = 0, endOffset = 0, num, min, max;
 
 			int j;
 			for (j = 0; j < 4; j++) {
@@ -33,24 +33,24 @@ int main(int numArgs, char *args[]) {
 			for (k = 0; k < 4; k++) {
 
 				if ((subpid = fork()) == 0) {
-					printf("(CHILD) Reading startOffset");
-					bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
+					printf("[k=%d] (CHILD) Reading startOffset", k);
+					int bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
 					if (bytesRead <= 0) {
-						printf("(CHILD) Failed to read startOffset");
+						printf("[k=%d] (CHILD) Failed to read startOffset", k);
 						_exit;
 					}
 					else {
-						printf("(CHILD) Read startOffset = %d", startOffset);
+						printf("[k=%d] (CHILD) Read startOffset = %d", k, startOffset);
 					}
 										
-					printf("(CHILD) Reading endOffset");
+					printf("[k=%d] (CHILD) Reading endOffset", k);
 					bytesRead = read(pipes[k][0], &endOffset, sizeof(endOffset));
 					if (bytesRead <= 0) {
-						printf("(CHILD) Failed to read endOffset");
+						printf("[k=%d] (CHILD) Failed to read endOffset", k);
 						_exit;
 					}
 					else {
-						printf("(CHILD) Read endOffset = %d", endOffset);
+						printf("[k=%d] (CHILD) Read endOffset = %d", k, endOffset);
 					}
 					
 					if (bytesRead > 0) {
@@ -58,8 +58,8 @@ int main(int numArgs, char *args[]) {
 
 						fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
 
-						printf("Child(%d): Recieved start position: %d\n", subpid, startOffset);
-						printf("Child(%d): Recieved end position: %d\n", subpid, endOffset);
+						printf("[k=%d] Child(%d): Recieved start position: %d\n", k, subpid, startOffset);
+						printf("[k=%d] Child(%d): Recieved end position: %d\n", k, subpid, endOffset);
 						
 						int i;
 						for (i = startOffset; i <= endOffset; i++) {
@@ -69,10 +69,10 @@ int main(int numArgs, char *args[]) {
 							if (i == startOffset) {
 								min = temp;
 								max = temp;
-								printf("%i: %i : %d\t\n", pid, temp, i);
+								printf("[k=%d] %i: %i : %d\t\n", k, pid, temp, i);
 							}
 							else if (i == endOffset) {
-								printf("%i: %i : %d\t\n", pid, temp, i);
+								printf("[k=%d] %i: %i : %d\t\n", k, pid, temp, i);
 							}
 
 							if (temp < min) {
@@ -83,15 +83,15 @@ int main(int numArgs, char *args[]) {
 								max = temp;
 							}
 
-							printf("(CHILD) %i: %i : %d\t\n", subpid, temp, i);
+							printf("[k=%d] (CHILD) %i: %i : %d\t\n", k, subpid, temp, i);
 						}
 					}
 
 					write(pipes[k + 4][1], &min, sizeof(min));
 					write(pipes[k + 4][1], &max, sizeof(max));
 
-					printf("(CHILD) Subprocess: %d gave %d as min and %d as max\n", subpid, min, max);
-					printf("Min:%d Max: %d\n", min, max);
+					printf("[k=%d] (CHILD) Subprocess: %d gave %d as min and %d as max\n", k, subpid, min, max);
+					printf("[k=%d] Min:%d Max: %d\n", k, min, max);
 					_exit;
 				}
 				
@@ -142,16 +142,19 @@ int main(int numArgs, char *args[]) {
 
 				printf("Waiting for child read");
 
-				int len1 = read(pipes[k + 4][0], &min, sizeof(min));
-				if (len1 > 0) {
+				int bytesRead = read(pipes[k + 4][0], &min, sizeof(min));
+				if (bytesRead > 0) {
 					printf("Parent(%d): Recieved %d from child as min.\n", parentpid, min);
 				}
+				else {
+					printf("Parent(%d): Error Reading Min from child.\n", parentpid);
+				}
 
-				int len2 = read(pipes[k + 4][0], &max, sizeof(max));
-				if (len2 > 0) {
+				int bytesRead = read(pipes[k + 4][0], &max, sizeof(max));
+				if (bytesRead > 0) {
 					printf("Parent(%d): Recieved %d from child as max.\n", parentpid, max);
 				} else {
-					printf("Parent(%d): Error with len\n", parentpid);
+					printf("Parent(%d): Error Reading Max from child.\n", parentpid);
 				}
 			}
 		}
