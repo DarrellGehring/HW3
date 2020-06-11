@@ -38,8 +38,6 @@ int main(int numArgs, char *args[]) {
 
 		char* filePath = args[2];
 		
-
-
 		int pid = fork();
 		if (pid == 0)
 		{
@@ -49,7 +47,7 @@ int main(int numArgs, char *args[]) {
 			dup2(cp[1], 1); //move stdout to pipe of cp[1]
 			close(0); //close stdin
 			close(cp[0]); //close pipe in
-			int retVal = execl("minMax", "minMax", "1", (char *)filePath, NULL);  //note: All the arguments in exec have to be strings.
+			int retVal = execl("minMax", "minMax", "1", filePath, NULL);  //note: All the arguments in exec have to be strings.
 
 			if (retVal == -1) {
 				printf("exec was unsuccessful");
