@@ -71,8 +71,8 @@ int main(int numArgs, char *args[]) {
 						}
 					}
 
-					write(pipes[i + 4][1], &min, sizeof(min));
-					write(pipes[i + 4][1], &max, sizeof(max));
+					write(pipes[k + 4][1], &min, sizeof(min));
+					write(pipes[k + 4][1], &max, sizeof(max));
 
 					printf("Subprocess: %d gave %d as min and %d as max\n", subpid, min, max);
 					printf("Total numbers:%d Total Read: %d\n", num, i);
