@@ -49,8 +49,7 @@ int main(int numArgs, char *args[]) {
 						
 						int i;
 						for (i = startOffset; i <= endOffset; i++) {
-							int temp = i;
-
+							int temp = 0;
 							fread(&temp, sizeof(int), 1, readF);
 
 							if (i == startOffset) {
@@ -71,7 +70,7 @@ int main(int numArgs, char *args[]) {
 								max = temp;
 							}
 
-							printf("%i: %i : %d\t\n", subpid, temp, i);
+							//printf("%i: %i : %d\t\n", subpid, temp, i);
 						}
 					}
 
