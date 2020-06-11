@@ -67,7 +67,7 @@ int main(int numArgs, char *args[]) {
 								max = temp;
 							}
 
-							//printf("%i: %i : %d\t\n", subpid, temp, i);
+							printf("%i: %i : %d\t\n", subpid, temp, i);
 						}
 					}
 
