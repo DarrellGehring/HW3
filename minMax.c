@@ -69,10 +69,10 @@ int main(int numArgs, char *args[]) {
 							if (i == startOffset) {
 								min = temp;
 								max = temp;
-								printf("[k=%d] %i: %i : %d\t\n", k, pid, temp, i);
+								printf("[k=%d] %i: %i : %d\t\n", k, subpid, temp, i);
 							}
 							else if (i == endOffset) {
-								printf("[k=%d] %i: %i : %d\t\n", k, pid, temp, i);
+								printf("[k=%d] %i: %i : %d\t\n", k, subpid, temp, i);
 							}
 
 							if (temp < min) {
