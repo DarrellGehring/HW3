@@ -114,6 +114,8 @@ int main(int numArgs, char *args[]) {
 					endOffset = num - 1;
 				}
 
+				printf("Determined endoffset %d\n", endOffset);
+
 				printf("Parent(%d): Sending file position to child\n", parentpid);
 				write(pipes[k][1], &startOffset, sizeof(startOffset));
 				write(pipes[k][1], &endOffset, sizeof(endOffset));
