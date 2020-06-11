@@ -134,6 +134,7 @@ int main(int numArgs, char *args[]) {
 					printf("Parent(%d): Error with len\n", parentpid);
 				}
 			}
+			fclose(readF);
 		}
 		else {
 			int min;
@@ -178,8 +179,6 @@ int main(int numArgs, char *args[]) {
 	else {
 		printf("Error: no file found with that name.\n");
 	}
-
-	fclose(readF);
 	printf("\n");
 	return 0;
 }
