@@ -37,6 +37,10 @@ int main(int numArgs, char *args[]) {
 
 					sentLen = read(pipes[i][0], &startOffset, sizeof(startOffset));
 
+					if (sentLen <= 0) {
+						printf("Issue getting startoffset");
+					}
+
 					subpid = getpid();
 
 					fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
