@@ -94,6 +94,7 @@ int main(int numArgs, char *args[]) {
 
 					//printf("[k=%d] (CHILD) Subprocess: %d gave %d as min and %d as max\n", k, subpid, min, max);
 					//printf("[k=%d] Min:%d Max: %d\n", k, min, max);
+					printf(subpid[k]);
 					_exit;
 				}
 				
@@ -171,9 +172,11 @@ int main(int numArgs, char *args[]) {
 					//printf("[k=%d] Set maxMax = %d", k, max);
 					maxMax = max;
 				}
+
+				wait(NULL);
+				printf("Child exited");
 			}
 
-			wait(NULL);
 
 			printf("Min: %d Max: %d\n", min, max);
 			fclose(readF);
