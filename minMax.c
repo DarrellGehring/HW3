@@ -18,7 +18,7 @@ int main(int numArgs, char *args[]) {
 
 	FILE * readF = fopen(filename, "rb");
 
-	printf("Option = %s\n", *args[1]);
+	//printf("Option = %s\n", *args[1]);
 
 	if (readF) {
 		if (*args[1] == '4') {
