@@ -31,11 +31,11 @@ int main(int numArgs, char *args[]) {
 
 			int minMin = -1, maxMax = -1;
 
-			printf("Starting!");
+			//printf("Starting!");
 			int k;
 			for (k = 0; k < 4; k++) {
 
-				printf("Looping!");
+				//printf("Looping!");
 
 				if ((subpid = fork()) == 0) {
 					//printf("[k=%d] (CHILD) Reading startOffset", k);
