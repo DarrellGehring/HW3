@@ -101,7 +101,7 @@ int main(int numArgs, char *args[]) {
 			if (retVal == -1) {
 				printf("exec was unsuccessful");
 			} else {
-				printf("Execl for minMax complet (4 fork option)")
+				printf("Execl for minMax complet (4 fork option)");
 			}
 		}
 		else
