@@ -94,16 +94,10 @@ int main(int numArgs, char *args[]) {
 
 			close(cp[1]); //if you don't close this part of the pipe then the while loop (three lines down) will never return
 			char ch;
-			int outcount = 0;
 			while (read(cp[0], &ch, 1) == 1)
 			{
 				printf("%c", ch);
 				//write(1, &ch, 1);
-				outcount++;
-
-				if (outcount == 2) {
-					break;
-				}
 			}
 		}
 	}
