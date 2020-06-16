@@ -157,7 +157,7 @@ int main(int numArgs, char *args[]) {
 								
 				//printf("[k=%d] Waiting for child read", k);
 
-				int bytesRead = read(pipes[k + 4][0], &min, sizeof(min));
+				bytesRead = read(pipes[k + 4][0], &min, sizeof(min));
 				if (bytesRead > 0) {
 					//printf("[k=%d] Parent(%d): Recieved %d from child as min.\n", k, parentpid, min);
 				}
