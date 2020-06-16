@@ -172,7 +172,7 @@ int main(int numArgs, char *args[]) {
 					printf("[k=%d] Set minMin = %d", k, min);
 					minMin = min;
 				}
-				if (max < maxMax || maxMax == -1) {
+				if (max > maxMax || maxMax == -1) {
 					printf("[k=%d] Set maxMax = %d", k, max);
 					maxMax = max;
 				}
