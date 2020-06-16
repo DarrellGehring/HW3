@@ -18,8 +18,6 @@ int main(int numArgs, char *args[]) {
 
 	FILE * readF = fopen(filename, "rb");
 
-	//printf("Option = %s\n", *args[1]);
-
 	if (readF) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
@@ -33,7 +31,8 @@ int main(int numArgs, char *args[]) {
 
 			int minMin = -1, maxMax = -1;
 
-			printf("[4 Fork Option] - Starting!");
+			printf("[4 Fork Option] - Starting!\n");
+
 			int k;
 			for (k = 0; k < 4; k++) {
 
@@ -102,7 +101,7 @@ int main(int numArgs, char *args[]) {
 					_exit;
 				}
 				
-				//printf("A\n");
+				printf("A\n");
 
 
 				parentpid = getpid();
