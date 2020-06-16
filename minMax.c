@@ -89,7 +89,7 @@ int main(int numArgs, char *args[]) {
 								max = temp;
 							}
 
-							printf("[k=%d] (CHILD) %i: %i : %d\t\n", k, subpid, temp, i);
+							//printf("[k=%d] (CHILD) %i: %i : %d\t\n", k, subpid, temp, i);
 						}
 					}
 
