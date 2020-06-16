@@ -35,6 +35,8 @@ int main(int numArgs, char *args[]) {
 			int k;
 			for (k = 0; k < 4; k++) {
 
+				printf("Looping!");
+
 				if ((subpid = fork()) == 0) {
 					printf("[k=%d] (CHILD) Reading startOffset", k);
 					int bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
