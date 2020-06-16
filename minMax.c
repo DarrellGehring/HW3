@@ -21,8 +21,7 @@ int main(int numArgs, char *args[]) {
 	if (readF) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
-			pid_t subpid[4];
-			pid_t parentpid;
+			pid_t parentpid, subpid;
 			int startOffset = 0, endOffset = 0, num, min, max;
 
 			int j;
@@ -35,7 +34,7 @@ int main(int numArgs, char *args[]) {
 			int k;
 			for (k = 0; k < 4; k++) {
 
-				if ((subpid[k] = fork()) == 0) {
+				if (fork() == 0) {
 					//printf("[k=%d] (CHILD) Reading startOffset", k);
 					int bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
 					if (bytesRead <= 0) {
@@ -96,87 +95,88 @@ int main(int numArgs, char *args[]) {
 					//printf("[k=%d] Min:%d Max: %d\n", k, min, max);
 					_exit;
 				}
-				
-				//printf("A\n");
-
-
-				parentpid = getpid();
-				fseek(readF, 0, SEEK_END); //go to end of file
-
-				//printf("B\n");
-
-				long size = ftell(readF); //keep track of last byte in the file
-
-				//printf("C\n");
-
-				fseek(readF, 0, SEEK_SET); //go to beginning of file
-
-				//printf("D\n");
-
-				num = (int)size / (int)sizeof(int); //How many total numbers in file
-
-				//printf("E\n");
-
-				startOffset = (k)*((num + 3) / 4); //Will produce index to start at 
-
-				//printf("F\n");
-
-				//printf("[k=%d] Determined startOffset %d\n", k, startOffset);
-
-				//printf("G\n");
-
-				if (k != 3) {
-					endOffset = (((k + 1)*((num + 3) / 4)) - 1);
-				}
 				else {
-					endOffset = num - 1;
-				}
 
-				//printf("[k=%d] Determined endoffset %d\n", k, endOffset);
+					//printf("A\n");
 
-				//printf("[k=%d] Parent(%d): Sending startOffset to child\n", k, parentpid);
-				if (write(pipes[k][1], &startOffset, sizeof(startOffset)) < 0) {
-					//printf("[k=%d] Send of startOffset Failed!", k);
-					_exit;
-				}
-				
-				//printf("[k=%d] Parent(%d): Sending endOffset to child\n", k, parentpid);
-				if (write(pipes[k][1], &endOffset, sizeof(endOffset)) < 0) {
-					//printf("[k=%d] Send of endOffset Failed!", k);
-					_exit;
-				}
-								
-				//printf("[k=%d] Waiting for child read", k);
 
-				int bytesRead = read(pipes[k + 4][0], &min, sizeof(min));
-				if (bytesRead > 0) {
-					//printf("[k=%d] Parent(%d): Recieved %d from child as min.\n", k, parentpid, min);
-				}
-				else {
-					//printf("[k=%d] Parent(%d): Error Reading Min from child.\n", k, parentpid);
-				}
+					parentpid = getpid();
+					fseek(readF, 0, SEEK_END); //go to end of file
 
-				bytesRead = read(pipes[k + 4][0], &max, sizeof(max));
-				if (bytesRead > 0) {
-					//printf("[k=%d] Parent(%d): Recieved %d from child as max.\n", k, parentpid, max);
-				} else {
-					//printf("[k=%d] Parent(%d): Error Reading Max from child.\n", k, parentpid);
-				}
+					//printf("B\n");
 
-				if (min < minMin || minMin == -1) {
-					//printf("[k=%d] Set minMin = %d", k, min);
-					minMin = min;
-				}
-				if (max < maxMax || maxMax == -1) {
-					//printf("[k=%d] Set maxMax = %d", k, max);
-					maxMax = max;
+					long size = ftell(readF); //keep track of last byte in the file
+
+					//printf("C\n");
+
+					fseek(readF, 0, SEEK_SET); //go to beginning of file
+
+					//printf("D\n");
+
+					num = (int)size / (int)sizeof(int); //How many total numbers in file
+
+					//printf("E\n");
+
+					startOffset = (k)*((num + 3) / 4); //Will produce index to start at 
+
+					//printf("F\n");
+
+					//printf("[k=%d] Determined startOffset %d\n", k, startOffset);
+
+					//printf("G\n");
+
+					if (k != 3) {
+						endOffset = (((k + 1)*((num + 3) / 4)) - 1);
+					}
+					else {
+						endOffset = num - 1;
+					}
+
+					//printf("[k=%d] Determined endoffset %d\n", k, endOffset);
+
+					//printf("[k=%d] Parent(%d): Sending startOffset to child\n", k, parentpid);
+					if (write(pipes[k][1], &startOffset, sizeof(startOffset)) < 0) {
+						//printf("[k=%d] Send of startOffset Failed!", k);
+						_exit;
+					}
+
+					//printf("[k=%d] Parent(%d): Sending endOffset to child\n", k, parentpid);
+					if (write(pipes[k][1], &endOffset, sizeof(endOffset)) < 0) {
+						//printf("[k=%d] Send of endOffset Failed!", k);
+						_exit;
+					}
+
+					//printf("[k=%d] Waiting for child read", k);
+
+					int bytesRead = read(pipes[k + 4][0], &min, sizeof(min));
+					if (bytesRead > 0) {
+						//printf("[k=%d] Parent(%d): Recieved %d from child as min.\n", k, parentpid, min);
+					}
+					else {
+						//printf("[k=%d] Parent(%d): Error Reading Min from child.\n", k, parentpid);
+					}
+
+					bytesRead = read(pipes[k + 4][0], &max, sizeof(max));
+					if (bytesRead > 0) {
+						//printf("[k=%d] Parent(%d): Recieved %d from child as max.\n", k, parentpid, max);
+					}
+					else {
+						//printf("[k=%d] Parent(%d): Error Reading Max from child.\n", k, parentpid);
+					}
+
+					if (min < minMin || minMin == -1) {
+						//printf("[k=%d] Set minMin = %d", k, min);
+						minMin = min;
+					}
+					if (max < maxMax || maxMax == -1) {
+						//printf("[k=%d] Set maxMax = %d", k, max);
+						maxMax = max;
+					}
+
+					subpid = wait(NULL);
 				}
 			}
 
-			waitpid(subpid[0]);
-			waitpid(subpid[1]);
-			waitpid(subpid[2]);
-			waitpid(subpid[3]);
 
 			printf("Min: %d Max: %d\n", min, max);
 			fclose(readF);
