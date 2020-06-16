@@ -173,6 +173,7 @@ int main(int numArgs, char *args[]) {
 				}
 			}
 			printf("Min: %d Max: %d\n", min, max);
+			fclose(readF);
 		}
 		else {
 			int min;
