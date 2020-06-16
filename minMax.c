@@ -37,6 +37,7 @@ int main(int numArgs, char *args[]) {
 			for (k = 0; k < 4; k++) {
 
 				if ((subpid = fork()) == 0) {
+
 					printf("[k=%d] (CHILD) Reading startOffset", k);
 					printf("We're in the child process.\n");
 					int bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
@@ -99,6 +100,9 @@ int main(int numArgs, char *args[]) {
 					
 					//printf(subpid);
 					_exit;
+				}
+				else {
+					printf("[k=%d] - SubID = %d\n", k, subpid);
 				}
 				
 				printf("A\n");
