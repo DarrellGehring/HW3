@@ -39,7 +39,7 @@ int main(int numArgs, char *args[]) {
 				if ((subpid = fork()) == 0) {
 
 					printf("[k=%d] (CHILD) Reading startOffset", k);
-					printf("We're in the child process.\n");
+
 					int bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
 					if (bytesRead <= 0) {
 						printf("[k=%d] (CHILD) Failed to read startOffset", k);
@@ -50,6 +50,7 @@ int main(int numArgs, char *args[]) {
 					}
 										
 					printf("[k=%d] (CHILD) Reading endOffset", k);
+					
 					bytesRead = read(pipes[k][0], &endOffset, sizeof(endOffset));
 					if (bytesRead <= 0) {
 						printf("[k=%d] (CHILD) Failed to read endOffset", k);
@@ -63,8 +64,8 @@ int main(int numArgs, char *args[]) {
 
 						fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
 
-						//printf("[k=%d] Child(%d): Recieved start position: %d\n", k, subpid, startOffset);
-						//printf("[k=%d] Child(%d): Recieved end position: %d\n", k, subpid, endOffset);
+						printf("[k=%d] Child(%d): Recieved start position: %d\n", k, subpid, startOffset);
+						printf("[k=%d] Child(%d): Recieved end position: %d\n", k, subpid, endOffset);
 						
 						int i;
 						for (i = startOffset; i <= endOffset; i++) {
