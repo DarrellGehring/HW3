@@ -39,6 +39,7 @@ int main(int numArgs, char *args[]) {
 
 				if ((subpid = fork()) == 0) {
 					printf("[k=%d] (CHILD) Reading startOffset", k);
+					printf("We're in the child process.\n");
 					int bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
 					if (bytesRead <= 0) {
 						//printf("[k=%d] (CHILD) Failed to read startOffset", k);
