@@ -58,6 +58,7 @@ int main(int numArgs, char *args[]) {
 		{
 
 			close(cp[1]); //if you don't close this part of the pipe then the while loop (three lines down) will never return
+			close(cp[0]);
 			char ch;
 			while (read(cp[0], &ch, 1) == 1)
 			{
