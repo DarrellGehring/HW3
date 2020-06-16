@@ -185,6 +185,13 @@ int main(int numArgs, char *args[]) {
 			printf("Min: %d Max: %d\n", minMin, maxMax);
 			
 			fclose(readF);
+
+			int m;
+			for (m = 0; m < 7, m++) {
+				close(pipes[m][0]);
+				close(pipes[m][1]);
+			}
+
 			_exit;
 		}
 		else {
