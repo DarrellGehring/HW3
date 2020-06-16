@@ -38,8 +38,8 @@ int main(int numArgs, char *args[]) {
 				printf("Looping!");
 
 				if ((subpid = fork()) == 0) {
-					printf("[k=%d] (CHILD) Reading startOffset", k);
-					printf("We're in the child process.\n");
+					//printf("[k=%d] (CHILD) Reading startOffset", k);
+					//printf("We're in the child process.\n");
 					int bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
 					if (bytesRead <= 0) {
 						//printf("[k=%d] (CHILD) Failed to read startOffset", k);
@@ -97,8 +97,8 @@ int main(int numArgs, char *args[]) {
 
 					//printf("[k=%d] (CHILD) Subprocess: %d gave %d as min and %d as max\n", k, subpid, min, max);
 					//printf("[k=%d] Min:%d Max: %d\n", k, min, max);
-					printf("Here at least!!!!");
-					printf(subpid);
+					//printf("Here at least!!!!");
+					//printf(subpid);
 					_exit;
 				}
 				
@@ -151,34 +151,34 @@ int main(int numArgs, char *args[]) {
 					_exit;
 				}
 								
-				printf("[k=%d] Waiting for child read", k);
+				//printf("[k=%d] Waiting for child read", k);
 
 				int bytesRead = read(pipes[k + 4][0], &min, sizeof(min));
 				if (bytesRead > 0) {
-					printf("[k=%d] Parent(%d): Recieved %d from child as min.\n", k, parentpid, min);
+					//printf("[k=%d] Parent(%d): Recieved %d from child as min.\n", k, parentpid, min);
 				}
 				else {
-					printf("[k=%d] Parent(%d): Error Reading Min from child.\n", k, parentpid);
+					//printf("[k=%d] Parent(%d): Error Reading Min from child.\n", k, parentpid);
 				}
 
 				bytesRead = read(pipes[k + 4][0], &max, sizeof(max));
 				if (bytesRead > 0) {
-					printf("[k=%d] Parent(%d): Recieved %d from child as max.\n", k, parentpid, max);
+					//printf("[k=%d] Parent(%d): Recieved %d from child as max.\n", k, parentpid, max);
 				} else {
-					printf("[k=%d] Parent(%d): Error Reading Max from child.\n", k, parentpid);
+					//printf("[k=%d] Parent(%d): Error Reading Max from child.\n", k, parentpid);
 				}
 
 				if (min < minMin || minMin == -1) {
-					printf("[k=%d] Set minMin = %d", k, min);
+					//printf("[k=%d] Set minMin = %d", k, min);
 					minMin = min;
 				}
 				if (max > maxMax || maxMax == -1) {
-					printf("[k=%d] Set maxMax = %d", k, max);
+					//printf("[k=%d] Set maxMax = %d", k, max);
 					maxMax = max;
 				}
 
 				//wait(NULL);
-				printf("Child exited");
+				//printf("Child exited");
 			}
 
 
