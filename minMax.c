@@ -94,6 +94,7 @@ int main(int numArgs, char *args[]) {
 
 					//printf("[k=%d] (CHILD) Subprocess: %d gave %d as min and %d as max\n", k, subpid, min, max);
 					//printf("[k=%d] Min:%d Max: %d\n", k, min, max);
+					printf("Here at least!!!!");
 					printf(subpid[k]);
 					_exit;
 				}
