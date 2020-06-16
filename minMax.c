@@ -36,7 +36,7 @@ int main(int numArgs, char *args[]) {
 			int k;
 			for (k = 0; k < 4; k++) {
 
-				//if ((subpid = fork()) == 0) {
+				if ((subpid = fork()) == 0) {
 
 					printf("[k=%d] (CHILD) Reading startOffset", k);
 
@@ -89,7 +89,7 @@ int main(int numArgs, char *args[]) {
 								max = temp;
 							}
 
-							//printf("[k=%d] (CHILD) %i: %i : %d\t\n", k, subpid, temp, i);
+							printf("[k=%d] (CHILD) %i: %i : %d\t\n", k, subpid, temp, i);
 						}
 					}
 
@@ -101,10 +101,10 @@ int main(int numArgs, char *args[]) {
 					
 					//printf(subpid);
 					_exit;
-				//}
-				//else {
-				//	printf("[k=%d] - SubID = %d\n", k, subpid);
-				//}
+				}
+				else {
+					printf("[k=%d] - SubID = %d\n", k, subpid);
+				}
 				
 				printf("A\n");
 
@@ -157,7 +157,7 @@ int main(int numArgs, char *args[]) {
 								
 				//printf("[k=%d] Waiting for child read", k);
 
-				bytesRead = read(pipes[k + 4][0], &min, sizeof(min));
+				int bytesRead = read(pipes[k + 4][0], &min, sizeof(min));
 				if (bytesRead > 0) {
 					//printf("[k=%d] Parent(%d): Recieved %d from child as min.\n", k, parentpid, min);
 				}
