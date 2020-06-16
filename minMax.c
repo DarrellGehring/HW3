@@ -188,6 +188,7 @@ int main(int numArgs, char *args[]) {
 
 			int m;
 			for (m = 0; m < 7; m++) {
+				printf("Closing Pipes: %d\n", m);
 				close(pipes[m][0]);
 				close(pipes[m][1]);
 			}
