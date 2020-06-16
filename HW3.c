@@ -51,12 +51,12 @@ int main(int numArgs, char *args[]) {
 			close(cp[0]); //close pipe in
 			t = clock();
 
-			printf("Set Clock");
-
 			int retVal = execl("minMax", "minMax", "1", filePath, NULL);  //note: All the arguments in exec have to be strings.
 
 			if (retVal == -1) {
 				printf("exec was unsuccessful");
+			} else {
+				printf("Execl for minMax complet (1 fork option)")
 			}
 		}
 		else
@@ -71,7 +71,7 @@ int main(int numArgs, char *args[]) {
 				//write(1, &ch, 1);
 				//outcount++;
 			}
-			printf("Stopping Clock");
+
 			t = clock() - t;
 
 			double execTime = ((double)t) / CLOCKS_PER_SEC;
@@ -100,6 +100,8 @@ int main(int numArgs, char *args[]) {
 
 			if (retVal == -1) {
 				printf("exec was unsuccessful");
+			} else {
+				printf("Execl for minMax complet (4 fork option)")
 			}
 		}
 		else

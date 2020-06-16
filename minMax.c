@@ -31,32 +31,30 @@ int main(int numArgs, char *args[]) {
 
 			int minMin = -1, maxMax = -1;
 
-			//printf("Starting!");
+			printf("[4 Fork Option] - Starting!");
 			int k;
 			for (k = 0; k < 4; k++) {
 
-				//printf("Looping!");
-
 				if ((subpid = fork()) == 0) {
-					//printf("[k=%d] (CHILD) Reading startOffset", k);
-					//printf("We're in the child process.\n");
+					printf("[k=%d] (CHILD) Reading startOffset", k);
+					printf("We're in the child process.\n");
 					int bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
 					if (bytesRead <= 0) {
-						//printf("[k=%d] (CHILD) Failed to read startOffset", k);
+						printf("[k=%d] (CHILD) Failed to read startOffset", k);
 						_exit;
 					}
 					else {
-						//printf("[k=%d] (CHILD) Read startOffset = %d", k, startOffset);
+						printf("[k=%d] (CHILD) Read startOffset = %d", k, startOffset);
 					}
 										
-					//printf("[k=%d] (CHILD) Reading endOffset", k);
+					printf("[k=%d] (CHILD) Reading endOffset", k);
 					bytesRead = read(pipes[k][0], &endOffset, sizeof(endOffset));
 					if (bytesRead <= 0) {
-						//printf("[k=%d] (CHILD) Failed to read endOffset", k);
+						printf("[k=%d] (CHILD) Failed to read endOffset", k);
 						_exit;
 					}
 					else {
-						//printf("[k=%d] (CHILD) Read endOffset = %d", k, endOffset);
+						printf("[k=%d] (CHILD) Read endOffset = %d", k, endOffset);
 					}
 					
 					if (bytesRead > 0) {
@@ -88,16 +86,16 @@ int main(int numArgs, char *args[]) {
 								max = temp;
 							}
 
-							//printf("[k=%d] (CHILD) %i: %i : %d\t\n", k, subpid, temp, i);
+							printf("[k=%d] (CHILD) %i: %i : %d\t\n", k, subpid, temp, i);
 						}
 					}
 
 					write(pipes[k + 4][1], &min, sizeof(min));
 					write(pipes[k + 4][1], &max, sizeof(max));
 
-					//printf("[k=%d] (CHILD) Subprocess: %d gave %d as min and %d as max\n", k, subpid, min, max);
-					//printf("[k=%d] Min:%d Max: %d\n", k, min, max);
-					//printf("Here at least!!!!");
+					printf("[k=%d] (CHILD) Subprocess: %d gave %d as min and %d as max\n", k, subpid, min, max);
+					printf("[k=%d] Min:%d Max: %d\n", k, min, max);
+					printf("Here at least!!!!");
 					//printf(subpid);
 					_exit;
 				}
@@ -178,7 +176,7 @@ int main(int numArgs, char *args[]) {
 				}
 
 				//wait(NULL);
-				//printf("Child exited");
+				printf("Child exited");
 			}
 
 
