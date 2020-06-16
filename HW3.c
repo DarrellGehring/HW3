@@ -39,7 +39,7 @@ int main(int numArgs, char *args[]) {
 		}
 
 		char* filePath = args[2];
-		
+		clock_t t;
 		int pid = fork();
 		if (pid == 0)
 		{
@@ -48,6 +48,7 @@ int main(int numArgs, char *args[]) {
 			dup2(cp[1], 1); //move stdout to pipe of cp[1]
 			close(0); //close stdin
 			close(cp[0]); //close pipe in
+			t = clock();
 			int retVal = execl("minMax", "minMax", "1", filePath, NULL);  //note: All the arguments in exec have to be strings.
 
 			if (retVal == -1) {
@@ -66,6 +67,11 @@ int main(int numArgs, char *args[]) {
 				//write(1, &ch, 1);
 				//outcount++;
 			}
+			t = clock() - t;
+
+			double execTime = ((double)t) / CLOCKS_PER_SEC;
+
+			printf("Took %f seconds to complete using 1 fork.");
 		}
 	} else if (*args[1] == '4') {
 		if (pipe(cp) < 0)
@@ -84,6 +90,7 @@ int main(int numArgs, char *args[]) {
 			dup2(cp[1], 1); //move stdout to pipe of cp[1]
 			close(0); //close stdin
 			close(cp[0]); //close pipe in
+
 			int retVal = execl("minMax", "minMax", "4", filePath, NULL);  //note: All the arguments in exec have to be strings.
 
 			if (retVal == -1) {
