@@ -192,7 +192,7 @@ int main(int numArgs, char *args[]) {
 				close(pipes[m][0]);
 				close(pipes[m][1]);
 			}
-
+			return 0;
 			_exit;
 		}
 		else {
