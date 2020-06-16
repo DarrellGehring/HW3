@@ -50,6 +50,9 @@ int main(int numArgs, char *args[]) {
 			close(0); //close stdin
 			close(cp[0]); //close pipe in
 			t = clock();
+
+			printf("Set Clock");
+
 			int retVal = execl("minMax", "minMax", "1", filePath, NULL);  //note: All the arguments in exec have to be strings.
 
 			if (retVal == -1) {
@@ -68,6 +71,7 @@ int main(int numArgs, char *args[]) {
 				//write(1, &ch, 1);
 				//outcount++;
 			}
+			printf("Stopping Clock");
 			t = clock() - t;
 
 			double execTime = ((double)t) / CLOCKS_PER_SEC;
