@@ -173,7 +173,7 @@ int main(int numArgs, char *args[]) {
 					maxMax = max;
 				}
 
-				wait(NULL);
+				//wait(NULL);
 				printf("Child exited");
 			}
 
