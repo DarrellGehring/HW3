@@ -151,29 +151,29 @@ int main(int numArgs, char *args[]) {
 					_exit;
 				}
 								
-				//printf("[k=%d] Waiting for child read", k);
+				printf("[k=%d] Waiting for child read", k);
 
 				int bytesRead = read(pipes[k + 4][0], &min, sizeof(min));
 				if (bytesRead > 0) {
-					//printf("[k=%d] Parent(%d): Recieved %d from child as min.\n", k, parentpid, min);
+					printf("[k=%d] Parent(%d): Recieved %d from child as min.\n", k, parentpid, min);
 				}
 				else {
-					//printf("[k=%d] Parent(%d): Error Reading Min from child.\n", k, parentpid);
+					printf("[k=%d] Parent(%d): Error Reading Min from child.\n", k, parentpid);
 				}
 
 				bytesRead = read(pipes[k + 4][0], &max, sizeof(max));
 				if (bytesRead > 0) {
-					//printf("[k=%d] Parent(%d): Recieved %d from child as max.\n", k, parentpid, max);
+					printf("[k=%d] Parent(%d): Recieved %d from child as max.\n", k, parentpid, max);
 				} else {
-					//printf("[k=%d] Parent(%d): Error Reading Max from child.\n", k, parentpid);
+					printf("[k=%d] Parent(%d): Error Reading Max from child.\n", k, parentpid);
 				}
 
 				if (min < minMin || minMin == -1) {
-					//printf("[k=%d] Set minMin = %d", k, min);
+					printf("[k=%d] Set minMin = %d", k, min);
 					minMin = min;
 				}
 				if (max < maxMax || maxMax == -1) {
-					//printf("[k=%d] Set maxMax = %d", k, max);
+					printf("[k=%d] Set maxMax = %d", k, max);
 					maxMax = max;
 				}
 
@@ -182,9 +182,8 @@ int main(int numArgs, char *args[]) {
 			}
 
 
-			while (1) {
-				printf("Min: %d Max: %d\n", min, max);
-			}
+			printf("Min: %d Max: %d\n", min, max);
+			
 			fclose(readF);
 		}
 		else {
