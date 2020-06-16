@@ -182,7 +182,7 @@ int main(int numArgs, char *args[]) {
 			}
 
 
-			while (true) {
+			while (1) {
 				printf("Min: %d Max: %d\n", min, max);
 			}
 			fclose(readF);
