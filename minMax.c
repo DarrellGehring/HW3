@@ -172,6 +172,12 @@ int main(int numArgs, char *args[]) {
 					maxMax = max;
 				}
 			}
+
+			waitpid(subpid[0]);
+			waitpid(subpid[1]);
+			waitpid(subpid[2]);
+			waitpid(subpid[3]);
+
 			printf("Min: %d Max: %d\n", min, max);
 			fclose(readF);
 		}
