@@ -21,7 +21,8 @@ int main(int numArgs, char *args[]) {
 	if (readF) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
-			pid_t subpid, parentpid;
+			pid_t subpid[4]
+			pid_t parentpid;
 			int startOffset = 0, endOffset = 0, num, min, max;
 
 			int j;
@@ -34,7 +35,7 @@ int main(int numArgs, char *args[]) {
 			int k;
 			for (k = 0; k < 4; k++) {
 
-				if ((subpid = fork()) == 0) {
+				if ((subpid[k] = fork()) == 0) {
 					//printf("[k=%d] (CHILD) Reading startOffset", k);
 					int bytesRead = read(pipes[k][0], &startOffset, sizeof(startOffset));
 					if (bytesRead <= 0) {
@@ -56,7 +57,6 @@ int main(int numArgs, char *args[]) {
 					}
 					
 					if (bytesRead > 0) {
-						subpid = getpid();
 
 						fseek(readF, (startOffset*(int)sizeof(int)), SEEK_SET);
 

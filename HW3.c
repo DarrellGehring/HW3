@@ -27,7 +27,7 @@ int main(int numArgs, char *args[]) {
 
 	printf("Darrell Gehring\n");
 
-	printf("FilePath = '%s'\n", args[2]);
+	//printf("FilePath = '%s'\n", args[2]);
 
 	int cp[2];
 
