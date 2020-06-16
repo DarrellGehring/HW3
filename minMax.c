@@ -18,6 +18,8 @@ int main(int numArgs, char *args[]) {
 
 	FILE * readF = fopen(filename, "rb");
 
+	printf("Option = %s\n", *args[1]);
+
 	if (readF) {
 		if (*args[1] == '4') {
 			int pipes[8][2]; //Make 8 pipes with in and out, each for path of communication to or from
@@ -95,7 +97,7 @@ int main(int numArgs, char *args[]) {
 
 					printf("[k=%d] (CHILD) Subprocess: %d gave %d as min and %d as max\n", k, subpid, min, max);
 					printf("[k=%d] Min:%d Max: %d\n", k, min, max);
-					printf("Here at least!!!!");
+					
 					//printf(subpid);
 					_exit;
 				}
@@ -176,7 +178,7 @@ int main(int numArgs, char *args[]) {
 				}
 
 				//wait(NULL);
-				printf("Child exited");
+				printf("[k=%d] Child exited\n", k);
 			}
 
 
