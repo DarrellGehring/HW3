@@ -278,8 +278,8 @@ int main(int numArgs, char *args[]) {
 	pid_t pid;
 	printf("Here4!\n");
 	long size = ftell(readF); //what byte in file am I at?
-	fseek(readF, 0, SEEK_SET); //go to beginning of file
-	int num = (int)size / (int)sizeof(int);
+	fseek(file, 0, SEEK_SET); //go to beginning of file
+	int nums = (int)size / (int)sizeof(int);
 	printf("Here5!\n");
 
 	// create all pipes
