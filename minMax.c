@@ -289,7 +289,7 @@ int main(int numArgs, char *args[]) {
 	// create all pipes
 	printf("Hopefully will make %d pipes.\n", numchild);
 
-	/*
+
 	for (i = 0; i < numchild; i++) {
 		pipe(fd[i]);
 		printf("Opening pipes for %d!\n", i);
@@ -354,7 +354,7 @@ int main(int numArgs, char *args[]) {
 		{
 			printf("Parent(%d): Error with len\n", pid);
 		}
-	}*/
+	}
 
 	return 0;
 }
