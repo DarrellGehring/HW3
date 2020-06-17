@@ -254,8 +254,7 @@ int main(int numArgs, char *args[]) {
 #include <stdlib.h>
 #include <unistd.h>
 
-int main(int numArgs, char *args[])
-{
+int main(int numArgs, char *args[]) {
 	int numchild = args[2];
 
 	int fd[2 * numchild][2]; //parent+child pipe
@@ -335,4 +334,6 @@ int main(int numArgs, char *args[])
 			printf("Parent(%d): Error with len\n", pid);
 		}
 	}
+
+	return 0;
 }
