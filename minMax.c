@@ -267,9 +267,9 @@ int main(int numArgs, char *args[]) {
 	printf("Here!\n");
 
 	const char *filename = args[2];
-	printf("Opening file:");
+	printf("Opening file:\n");
 	FILE * file = fopen(filename, "r");
-	printf("Finished.");
+	printf("Finished.\n");
 
 	int fd[8][2]; //parent+child pipe
 	printf("Here 2!\n");
@@ -289,6 +289,7 @@ int main(int numArgs, char *args[]) {
 	// create all pipes
 	for (i = 0; i < numchild; i++) {
 		pipe(fd[i]);
+		printf("Opening pipes for %d!\n", i);
 	}
 
 	for (i = 0; i < numchild; i++)
