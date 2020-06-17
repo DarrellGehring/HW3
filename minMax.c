@@ -263,9 +263,11 @@ int main(int numArgs, char *args[]) {
 	int i, j, len, fpos = 0, val, count = 0, total = 0;
 	pid_t pid;
 	int nums = 1000;
-	const char *filename = args[2];
 
+	const char *filename = args[2];
+	printf("Opening file:");
 	FILE * file = fopen(filename, "r");
+	printf("Finished.");
 
 	if (*args[1] != '1' && *args[1] != '4') {
 		printf("Error: first argument must be 1 or 4 in minMax. Was: %s\n", *args[1]);
