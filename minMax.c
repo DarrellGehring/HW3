@@ -253,7 +253,7 @@ int main(int numArgs, char *args[]) {
 #include <stdlib.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char *args[])
 {
 	int numchild = args[2];
 	int fd[2 * numchild][2]; //parent+child pipe
