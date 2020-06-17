@@ -255,6 +255,8 @@ int main(int numArgs, char *args[]) {
 #include <unistd.h>
 
 int main(int numArgs, char *args[]) {
+	printf("Starting Main\n");
+
 	int numchild = args[2];
 
 	int fd[2 * numchild][2]; //parent+child pipe
@@ -263,7 +265,7 @@ int main(int numArgs, char *args[]) {
 	int nums = 1000;
 	const char *filename = args[2];
 
-	FILE * file;
+	FILE * file = fopen(filename, "r");
 
 	if (*args[1] != '1' && *args[1] != '4') {
 		printf("Error: first argument must be 1 or 4 in minMax. Was: %s\n", *args[1]);
@@ -285,7 +287,6 @@ int main(int numArgs, char *args[]) {
 			len = read(fd[i][0], &fpos, sizeof(fpos));
 			if (len > 0)
 			{
-				file = fopen(filename, "r");
 				fseek(file, fpos, SEEK_SET);
 				count = 0;
 				total = 0;
