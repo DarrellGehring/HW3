@@ -279,9 +279,9 @@ int main(int numArgs, char *args[]) {
 
 	printf("Here4!\n");
 
-	fseek(readF, 0, SEEK_END); //go to end of file
+	fseek(file, 0, SEEK_END); //go to end of file
 	long size = ftell(file); //what byte in file am I at?
-	fseek(readF, 0, SEEK_SET); //go to beginning of file
+	fseek(file, 0, SEEK_SET); //go to beginning of file
 
 	int nums = (int)size / (int)sizeof(int);
 	printf("Here5!\n");
