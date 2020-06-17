@@ -91,10 +91,10 @@ int main(int numArgs, char *args[]) {
 		if (pid == 0)
 		{
 			printf(args[2]);
-			//close(1); //close stdout
+			close(1); //close stdout
 			dup2(cp[1], 1); //move stdout to pipe of cp[1]
-			//close(0); //close stdin
-			//close(cp[0]); //close pipe in
+			close(0); //close stdin
+			close(cp[0]); //close pipe in
 
 			int retVal = execl("minMax", "minMax", "4", filePath, NULL);  //note: All the arguments in exec have to be strings.
 
