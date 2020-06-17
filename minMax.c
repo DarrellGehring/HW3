@@ -290,7 +290,7 @@ int main(int numArgs, char *args[]) {
 	printf("Hopefully will make %d pipes.\n", numchild);
 
 
-	for (i = 0; i < numchild; i++) {
+	for (i = 0; i < numchild*2; i++) {
 		pipe(fd[i]);
 		printf("Opening pipes for %d!\n", i);
 	}
