@@ -257,9 +257,19 @@ int main(int numArgs, char *args[]) {
 int main(int numArgs, char *args[]) {
 	printf("Starting Main\n");
 
+	if (*args[1] != '1' && *args[1] != '4') {
+		printf("Error: first argument must be 1 or 4 in minMax. Was: %s\n", *args[1]);
+		return -1;
+	}
+
 	int numchild = args[1];
 
 	printf("Here!\n");
+
+	const char *filename = args[2];
+	printf("Opening file:");
+	FILE * file = fopen(filename, "r");
+	printf("Finished.");
 
 	int fd[8][2]; //parent+child pipe
 	printf("Here 2!\n");
@@ -267,17 +277,10 @@ int main(int numArgs, char *args[]) {
 	printf("Here3!\n");
 	pid_t pid;
 	printf("Here4!\n");
-	int nums = 1000;
+	long size = ftell(readF); //what byte in file am I at?
+	fseek(readF, 0, SEEK_SET); //go to beginning of file
+	int num = (int)size / (int)sizeof(int);
 	printf("Here5!\n");
-	const char *filename = args[2];
-	printf("Opening file:");
-	FILE * file = fopen(filename, "r");
-	printf("Finished.");
-
-	if (*args[1] != '1' && *args[1] != '4') {
-		printf("Error: first argument must be 1 or 4 in minMax. Was: %s\n", *args[1]);
-		return -1;
-	}
 
 	// create all pipes
 	for (i = 0; i < numchild; i++) {
