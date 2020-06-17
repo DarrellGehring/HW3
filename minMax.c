@@ -276,9 +276,13 @@ int main(int numArgs, char *args[]) {
 	int i, j, len, fpos = 0, val, count = 0, total = 0;
 	printf("Here3!\n");
 	pid_t pid;
+
 	printf("Here4!\n");
-	long size = ftell(readF); //what byte in file am I at?
-	fseek(file, 0, SEEK_SET); //go to beginning of file
+
+	fseek(readF, 0, SEEK_END); //go to end of file
+	long size = ftell(file); //what byte in file am I at?
+	fseek(readF, 0, SEEK_SET); //go to beginning of file
+
 	int nums = (int)size / (int)sizeof(int);
 	printf("Here5!\n");
 
