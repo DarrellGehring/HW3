@@ -257,7 +257,7 @@ int main(int numArgs, char *args[]) {
 int main(int numArgs, char *args[]) {
 	printf("Starting Main\n");
 
-	if (*args[1] != '1' && *args[1] != '4') {
+	if (args[1] != '1' && args[1] != '4') {
 		printf("Error: first argument must be 1 or 4 in minMax. Was: %s\n", args[1]);
 		return -1;
 	}
