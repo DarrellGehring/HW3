@@ -272,7 +272,7 @@ int main(int numArgs, char *args[]) {
 	printf("Finished.\n");
 
 	int fd[8][2]; //parent+child pipe
-	printf("Here 2!\n");
+	printf("Here2!\n");
 	int i, j, len, fpos = 0, val, count = 0, total = 0;
 	printf("Here3!\n");
 	pid_t pid;
@@ -291,6 +291,8 @@ int main(int numArgs, char *args[]) {
 		pipe(fd[i]);
 		printf("Opening pipes for %d!\n", i);
 	}
+
+	printf("After Pipes!\n");
 
 	for (i = 0; i < numchild; i++)
 	{
