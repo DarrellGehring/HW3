@@ -261,7 +261,7 @@ int main(int numArgs, char *args[]) {
 
 	printf("Here!\n");
 
-	int fd[2 * numchild][2]; //parent+child pipe
+	int fd[8][2]; //parent+child pipe
 	printf("Here 2!\n");
 	int i, j, len, fpos = 0, val, count = 0, total = 0;
 	printf("Here3!\n");
