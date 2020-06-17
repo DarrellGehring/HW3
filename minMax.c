@@ -262,7 +262,7 @@ int main(int numArgs, char *args[]) {
 		return -1;
 	}
 
-	int numchild = args[1];
+	int numchild = stoi(args[1]);
 
 	printf("Here!\n");
 
