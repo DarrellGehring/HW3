@@ -287,6 +287,8 @@ int main(int numArgs, char *args[]) {
 	printf("Here5!\n");
 
 	// create all pipes
+	printf("Hopefully will make %d pipes.\n", numchild);
+
 	for (i = 0; i < numchild; i++) {
 		pipe(fd[i]);
 		printf("Opening pipes for %d!\n", i);
