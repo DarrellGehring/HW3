@@ -336,7 +336,7 @@ int main(int numArgs, char *args[]) {
 		// parent process
 		pid = getpid();
 
-		fpos = ((i*nums*(int)sizeof(int)) / numchild); // 5 is the offset of the file values
+		fpos = ((i*nums) / numchild); // 5 is the offset of the file values
 
 		// write to child process
 		printf("Parent(%d): Sending file position to child\n", pid);
