@@ -257,7 +257,9 @@ int main(int numArgs, char *args[]) {
 int main(int numArgs, char *args[]) {
 	printf("Starting Main\n");
 
-	int numchild = args[2];
+	int numchild = args[1];
+
+	printf("Here!\n");
 
 	int fd[2 * numchild][2]; //parent+child pipe
 	int i, j, len, fpos = 0, val, count = 0, total = 0;
