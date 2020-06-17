@@ -262,6 +262,8 @@ int main(int argc, char *argv[])
 	int nums = 1000;
 	const char *filename = args[2];
 
+	FILE * file;
+
 	// create all pipes
 	for (i = 0; i < numchild; i++)
 	{
