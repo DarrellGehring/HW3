@@ -262,10 +262,13 @@ int main(int numArgs, char *args[]) {
 	printf("Here!\n");
 
 	int fd[2 * numchild][2]; //parent+child pipe
+	printf("Here 2!\n");
 	int i, j, len, fpos = 0, val, count = 0, total = 0;
+	printf("Here3!\n");
 	pid_t pid;
+	printf("Here4!\n");
 	int nums = 1000;
-
+	printf("Here5!\n");
 	const char *filename = args[2];
 	printf("Opening file:");
 	FILE * file = fopen(filename, "r");
