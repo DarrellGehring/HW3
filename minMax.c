@@ -367,26 +367,26 @@ int main(int numArgs, char *args[]) {
 
 		if (len > 0)
 		{
-			printf("Parent(%d): Recieved %d as max from child.\n", pid, total);
+			printf("Parent(%d): Recieved %d as min from child.\n", pid, min);
 			//total += total;
 			//printf("Parent(%d): Total: %d\n", pid, total);
 		}
 		else
 		{
-			printf("Parent(%d): Error with lenMin\n", pid);
+			printf("Parent(%d): Error with len\n", pid);
 		}
 
 		len = read(fd[i + numchild][0], &max, sizeof(max));
 
 		if (len > 0)
 		{
-			printf("Parent(%d): Recieved %d as max from child.\n", pid, total);
+			printf("Parent(%d): Recieved %d as max from child.\n", pid, max);
 			//total += total;
 			//printf("Parent(%d): Total: %d\n", pid, total);
 		}
 		else
 		{
-			printf("Parent(%d): Error with lenMin\n", pid);
+			printf("Parent(%d): Error with len\n", pid);
 		}
 	}
 
