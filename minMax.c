@@ -411,7 +411,7 @@ int main(int numArgs, char *args[]) {
 		}
 		else {
 			fseek(file, 0, SEEK_END); //go to end of file
-			long size = ftell(readF); //what byte in file am I at?
+			long size = ftell(file); //what byte in file am I at?
 			fseek(file, 0, SEEK_SET); //go to beginning of file
 			int num = (int)size / (int)sizeof(int);
 			//printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
