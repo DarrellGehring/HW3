@@ -348,7 +348,7 @@ int main(int numArgs, char *args[]) {
 				// printf("Child(%d): Error with len\n", pid);
 			}
 
-			_exit;
+			exit(); //Not triggering?
 		}
 
 		// parent process
@@ -406,6 +406,7 @@ int main(int numArgs, char *args[]) {
 		}
 
 		printf("Minimum: %d\t Maximum: %d\n", minMin, maxMax);
+
 	}
 	return 0;
 }
