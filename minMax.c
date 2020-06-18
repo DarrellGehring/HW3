@@ -404,7 +404,8 @@ int main(int numArgs, char *args[]) {
 		{
 			printf("Parent(%d): Error with len\n", pid);
 		}
+
+		printf("Minimum: %d\t Maximum: %d\n", minMin, maxMax);
 	}
-	printf("Minimum: %d\t Maximum: %d\n", minMin, maxMax);
 	return 0;
 }
