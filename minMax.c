@@ -318,7 +318,7 @@ int main(int numArgs, char *args[]) {
 				while (count < (nums / numchild))
 				{
 					int temp = 0;
-					fread(&temp, sizeof(int), 1, readF);
+					fread(&temp, sizeof(int), 1, file);
 					total += temp;
 					count++;
 				}
