@@ -339,13 +339,13 @@ int main(int numArgs, char *args[]) {
 				}
 				//write to parent
 				write(fd[i + 4][1], &min, sizeof(min));
-				// printf("Child(%d): Sent %d as min to parent.\n", pid, min);
+				printf("Child(%d): Sent %d as min to parent.\n", pid, min);
 				write(fd[i + 4][1], &max, sizeof(max));
-				// printf("Child(%d): Sent %d as max to parent.\n", pid, max);
+				printf("Child(%d): Sent %d as max to parent.\n", pid, max);
 			}
 			else
 			{
-				// printf("Child(%d): Error with len\n", pid);
+				printf("Child(%d): Error with len\n", pid);
 			}
 
 			_exit;
