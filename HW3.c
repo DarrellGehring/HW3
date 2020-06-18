@@ -21,7 +21,9 @@ int main(int numArgs, char *args[]) {
 	printf("Darrell Gehring\n");
 
 	int cp[2];
-	clock_t t = clock();
+
+	double time = 0.0;
+	clock_t start = clock();
 
 	if (*args[1] == '1') {
 		if (pipe(cp) < 0)
@@ -94,7 +96,10 @@ int main(int numArgs, char *args[]) {
 		}
 	}
 
-	t = (clock() - t);
+	clock_t finish = clock();
+
+	time += (double)(finish - start) / CLOCKS_PER_SEC;
+
 	printf("Took %f clock cycles to complete using 1 fork(s).", (float)t);
 
 	printf("\n");
