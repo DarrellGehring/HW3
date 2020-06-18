@@ -327,12 +327,12 @@ int main(int numArgs, char *args[]) {
 					}
 					else {
 						if (max < temp) {
-							printf("Child(%d): setting max to %d.\n", pid, max);
+							//printf("Child(%d): setting max to %d.\n", pid, max);
 							max = temp;
 						}
 
 						if (min > temp) {
-							printf("Child(%d): setting min to %d.\n", pid, min);
+							//printf("Child(%d): setting min to %d.\n", pid, min);
 							min = temp;
 						}
 					}
