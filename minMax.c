@@ -58,7 +58,6 @@ int main(int numArgs, char *args[]) {
 					{
 						fseek(file, fpos*(int)sizeof(int), SEEK_SET);
 						count = 0;
-						total = 0;
 
 						// printf("Child(%d): Recieved position: %d\n", pid, fpos);
 
