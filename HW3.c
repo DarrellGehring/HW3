@@ -97,7 +97,7 @@ int main(int numArgs, char *args[]) {
 	}
 
 	double execTime = ((double)t);
-	printf("Took %f clock cycles to complete using %s fork(s).", execTime, *args[1]);
+	printf("Took %f clock cycles to complete using %s fork(s).", execTime, args[1]);
 	t = clock() - t;
 
 	printf("\n");
