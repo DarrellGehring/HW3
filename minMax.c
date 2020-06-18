@@ -273,7 +273,7 @@ int main(int numArgs, char *args[]) {
 
 	int fd[8][2]; //parent+child pipe
 	printf("Here2!\n");
-	int i, j, len, fpos = 0, val, count = 0, total = 0;
+	int i, j, len, fpos = 0, val, count = 0, total = 0, min = -1, max = -1;
 	printf("Here3!\n");
 	pid_t pid;
 
@@ -319,12 +319,28 @@ int main(int numArgs, char *args[]) {
 				{
 					int temp = 0;
 					fread(&temp, sizeof(int), 1, file);
-					total += temp;
+					
+					if (count == 0) {
+						min = temp;
+						max = temp;
+					}
+					else {
+						if (max < temp) {
+							max = temp;
+						}
+
+						if (min > temp) {
+							min = temp;
+						}
+					}
+
 					count++;
 				}
 				//write to parent
-				write(fd[i + numchild][1], &total, sizeof(total));
-				printf("Child(%d): Sent %d to parent.\n", pid, total);
+				write(fd[i + numchild][1], &min, sizeof(min));
+				printf("Child(%d): Sent %d as min to parent.\n", pid, min);
+				write(fd[i + numchild][1], &max, sizeof(max));
+				printf("Child(%d): Sent %d as max to parent.\n", pid, max);
 			}
 			else
 			{
@@ -344,8 +360,9 @@ int main(int numArgs, char *args[]) {
 		write(fd[i][1], &fpos, sizeof(fpos));
 
 		// wait for child responce
-		len = read(fd[i + numchild][0], &total, sizeof(total));
-		if (len > 0)
+		lenMin = read(fd[i + numchild][0], &min, sizeof(min));
+
+		if (lenMin > 0)
 		{
 			printf("Parent(%d): Recieved %d from child.\n", pid, total);
 			total += total;
@@ -353,7 +370,20 @@ int main(int numArgs, char *args[]) {
 		}
 		else
 		{
-			printf("Parent(%d): Error with len\n", pid);
+			printf("Parent(%d): Error with lenMin\n", pid);
+		}
+
+		lenMax = read(fd[i + numchild][0], &max, sizeof(max));
+
+		if (lenMin > 0)
+		{
+			printf("Parent(%d): Recieved %d from child.\n", pid, total);
+			total += total;
+			printf("Parent(%d): Total: %d\n", pid, total);
+		}
+		else
+		{
+			printf("Parent(%d): Error with lenMin\n", pid);
 		}
 	}
 
