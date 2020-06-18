@@ -418,7 +418,7 @@ int main(int numArgs, char *args[]) {
 			int i;
 			for (i = 0; i < num; i++) {
 				int temp = 0;
-				fread(&temp, sizeof(int), 1, readF);
+				fread(&temp, sizeof(int), 1, file);
 				//printf("%i: %i\t", pid, temp);
 
 				if (i == 0) {
