@@ -273,7 +273,7 @@ int main(int numArgs, char *args[]) {
 
 	int fd[8][2]; //parent+child pipe
 	printf("Here2!\n");
-	int i, j, len, fpos = 0, val, count = 0, total = 0, min = -1, max = -1;
+	int i, j, lenMin, lenMax, fpos = 0, val, count = 0, total = 0, min = -1, max = -1;
 	printf("Here3!\n");
 	pid_t pid;
 
