@@ -273,7 +273,7 @@ int main(int numArgs, char *args[]) {
 
 	int fd[8][2]; //parent+child pipe
 	printf("Here2!\n");
-	int i, j, len, fpos = 0, val, count = 0, total = 0, min = -1, max = -1;
+	int i, j, len, fpos = 0, val, count = 0, total = 0, min = -1, max = -1, minMin, maxMax;
 	printf("Here3!\n");
 	pid_t pid;
 
@@ -368,6 +368,15 @@ int main(int numArgs, char *args[]) {
 		if (len > 0)
 		{
 			printf("Parent(%d): Recieved %d as min from child.\n", pid, min);
+
+			if (i == 0) {
+				minMin = min;
+			}
+			else {
+				if (minMin < min) {
+					minMin = min;
+				}
+			}
 			//total += total;
 			//printf("Parent(%d): Total: %d\n", pid, total);
 		}
@@ -381,6 +390,15 @@ int main(int numArgs, char *args[]) {
 		if (len > 0)
 		{
 			printf("Parent(%d): Recieved %d as max from child.\n", pid, max);
+
+			if (i == 0) {
+				maxMax = max;
+			}
+			else {
+				if (maxMax < max) {
+					maxMax = max;
+				}
+			}
 			//total += total;
 			//printf("Parent(%d): Total: %d\n", pid, total);
 		}
@@ -388,6 +406,7 @@ int main(int numArgs, char *args[]) {
 		{
 			printf("Parent(%d): Error with len\n", pid);
 		}
+		printf("Minimum: %d\t Maximum: %d\n", minMin, maxMax);
 	}
 
 	return 0;
