@@ -367,9 +367,9 @@ int main(int numArgs, char *args[]) {
 
 		if (lenMin > 0)
 		{
-			printf("Parent(%d): Recieved %d from child.\n", pid, total);
-			total += total;
-			printf("Parent(%d): Total: %d\n", pid, total);
+			printf("Parent(%d): Recieved %d as max from child.\n", pid, total);
+			//total += total;
+			//printf("Parent(%d): Total: %d\n", pid, total);
 		}
 		else
 		{
@@ -378,11 +378,11 @@ int main(int numArgs, char *args[]) {
 
 		lenMax = read(fd[i + numchild][0], &max, sizeof(max));
 
-		if (lenMin > 0)
+		if (lenMax > 0)
 		{
-			printf("Parent(%d): Recieved %d from child.\n", pid, total);
-			total += total;
-			printf("Parent(%d): Total: %d\n", pid, total);
+			printf("Parent(%d): Recieved %d as max from child.\n", pid, total);
+			//total += total;
+			//printf("Parent(%d): Total: %d\n", pid, total);
 		}
 		else
 		{
