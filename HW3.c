@@ -21,7 +21,7 @@ int main(int numArgs, char *args[]) {
 	printf("Darrell Gehring\n");
 
 	int cp[2];
-	time_t t = clock();
+	clock_t t = clock();
 
 	if (*args[1] == '1') {
 		if (pipe(cp) < 0)
