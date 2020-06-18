@@ -317,6 +317,7 @@ int main(int numArgs, char *args[]) {
 				// add values read to a total value
 				while (count < (nums / numchild))
 				{
+					printf("Child(%d): Looping in %d.\n", pid, count);
 					int temp = 0;
 					fread(&temp, sizeof(int), 1, file);
 					
