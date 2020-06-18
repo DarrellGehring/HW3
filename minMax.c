@@ -332,27 +332,29 @@ int main(int numArgs, char *args[]) {
 
 			_exit;
 		}
+		else {
 
-		// parent process
-		pid = getpid();
+			// parent process
+			pid = getpid();
 
-		fpos = ((i*nums) / numchild); // 5 is the offset of the file values
+			fpos = ((i*nums) / numchild); // 5 is the offset of the file values
 
-		// write to child process
-		printf("Parent(%d): Sending file position to child\n", pid);
-		write(fd[i][1], &fpos, sizeof(fpos));
+			// write to child process
+			printf("Parent(%d): Sending file position to child\n", pid);
+			write(fd[i][1], &fpos, sizeof(fpos));
 
-		// wait for child responce
-		len = read(fd[i + numchild][0], &total, sizeof(total));
-		if (len > 0)
-		{
-			printf("Parent(%d): Recieved %d from child.\n", pid, total);
-			total += total;
-			printf("Parent(%d): Total: %d\n", pid, total);
-		}
-		else
-		{
-			printf("Parent(%d): Error with len\n", pid);
+			// wait for child responce
+			len = read(fd[i + numchild][0], &total, sizeof(total));
+			if (len > 0)
+			{
+				printf("Parent(%d): Recieved %d from child.\n", pid, total);
+				total += total;
+				printf("Parent(%d): Total: %d\n", pid, total);
+			}
+			else
+			{
+				printf("Parent(%d): Error with len\n", pid);
+			}
 		}
 	}
 
