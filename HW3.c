@@ -97,7 +97,7 @@ int main(int numArgs, char *args[]) {
 
 	clock_t finish = clock();
 
-	printf("\nTime elapsed: %.2f\n", 1.0*(finish - start) / CLOCKS_PER_SEC);
+	printf("\nTime elapsed: %.8f\n", 1.0*(finish - start) / CLOCKS_PER_SEC);
 
 	printf("\n");
 	return 0;
