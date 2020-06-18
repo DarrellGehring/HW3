@@ -441,7 +441,7 @@ int main(int numArgs, char *args[]) {
 	} else {
 		printf("Failed to read given file!");
 	}
-	fclose(readF);
+	fclose(file);
 	printf("Minimum: %d\t Maximum: %d\n", minMin, maxMax);
 
 	return 0;
