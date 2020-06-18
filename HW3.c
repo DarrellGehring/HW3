@@ -33,7 +33,6 @@ int main(int numArgs, char *args[]) {
 		char* filePath = args[2];
 		int pid = fork();
 		if (pid == 0) {
-			printf(args[2]);
 			close(1); //close stdout
 			dup2(cp[1], 1); //move stdout to pipe of cp[1]
 			close(0); //close stdin
@@ -69,7 +68,6 @@ int main(int numArgs, char *args[]) {
 		int pid = fork();
 		if (pid == 0)
 		{
-			printf(args[2]);
 			close(1); //close stdout
 			dup2(cp[1], 1); //move stdout to pipe of cp[1]
 			close(0); //close stdin
