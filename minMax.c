@@ -265,6 +265,7 @@ int main(int numArgs, char *args[]) {
 	const char *filename = args[2];
 	// printf("Opening file:\n");
 	FILE * file = fopen(filename, "r");
+	int minMin, maxMax;
 
 	if (file) {
 		if (*args[1] == '4') {
@@ -273,7 +274,7 @@ int main(int numArgs, char *args[]) {
 
 			int fd[8][2]; //parent+child pipe
 			// printf("Here2!\n");
-			int i, j, len, fpos = 0, val, count = 0, total = 0, min = -1, max = -1, minMin, maxMax;
+			int i, j, len, fpos = 0, val, count = 0, total = 0, min = -1, max = -1;
 			// printf("Here3!\n");
 			pid_t pid;
 
@@ -409,7 +410,6 @@ int main(int numArgs, char *args[]) {
 			}
 		}
 		else {
-			int minMin, maxMax;
 			fseek(readF, 0, SEEK_END); //go to end of file
 			long size = ftell(readF); //what byte in file am I at?
 			fseek(readF, 0, SEEK_SET); //go to beginning of file
@@ -427,12 +427,12 @@ int main(int numArgs, char *args[]) {
 					//printf("%i: %i : %d\t\n", pid, temp, i);
 				}
 
-				if (temp < min) {
+				if (temp < minMin) {
 					//printf("Min was: %d Is now: %d\n", min, temp);
 					minMin = temp;
 				}
 
-				if (temp > max) {
+				if (temp > maxMax) {
 					//printf("Max was: %d Is now: %d\n", max, temp);
 					maxMax = temp;
 				}
