@@ -76,7 +76,7 @@ int main(int numArgs, char *args[]) {
 
 			double execTime = ((double)t) / CLOCKS_PER_SEC;
 
-			printf("Took %f seconds to complete using 1 fork.");
+			printf("Took %f seconds to complete using 1 fork.", execTime);
 		}
 	} else if (*args[1] == '4') {
 		if (pipe(cp) < 0)
