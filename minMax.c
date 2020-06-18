@@ -357,7 +357,6 @@ int main(int numArgs, char *args[]) {
 		fpos = ((i*nums) / 4);
 
 		// write to child process
-		printf('\0');
 		//printf("Parent(%d): Sending file position to child\n", pid);
 		write(fd[i][1], &fpos, sizeof(fpos));
 
@@ -366,7 +365,7 @@ int main(int numArgs, char *args[]) {
 
 		if (len > 0)
 		{
-			//printf("Parent(%d): Recieved %d as min from child.\n", pid, min);
+			printf("Parent(%d): Recieved %d as min from child.\n", pid, min);
 
 			if (i == 0) {
 				minMin = min;
@@ -388,7 +387,7 @@ int main(int numArgs, char *args[]) {
 
 		if (len > 0)
 		{
-			//printf("Parent(%d): Recieved %d as max from child.\n", pid, max);
+			printf("Parent(%d): Recieved %d as max from child.\n", pid, max);
 
 			if (i == 0) {
 				maxMax = max;
