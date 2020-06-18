@@ -307,7 +307,7 @@ int main(int numArgs, char *args[]) {
 			len = read(fd[i][0], &fpos, sizeof(fpos));
 			if (len > 0)
 			{
-				fseek(file, fpos, SEEK_SET);
+				fseek(file, fpos*(int)sizeof(int), SEEK_SET);
 				count = 0;
 				total = 0;
 
