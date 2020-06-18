@@ -97,7 +97,7 @@ int main(int numArgs, char *args[]) {
 	}
 
 	t = (clock() - t);
-	printf("Took %f clock cycles to complete using %s fork(s).", (float)t, args[1]);
+	printf("Took %f clock cycles to complete using 1 fork(s).", (float)t);
 
 	printf("\n");
 	return 0;
