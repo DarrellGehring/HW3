@@ -262,38 +262,38 @@ int main(int numArgs, char *args[]) {
 		return -1;
 	}
 
-	//printf("Here!\n");
+	printf("Here!\n");
 
 	const char *filename = args[2];
-	//printf("Opening file:\n");
+	printf("Opening file:\n");
 	FILE * file = fopen(filename, "r");
-	//printf("Finished.\n");
+	printf("Finished.\n");
 
 	int fd[8][2]; //parent+child pipe
-	//printf("Here2!\n");
+	printf("Here2!\n");
 	int i, j, len, fpos = 0, val, count = 0, total = 0, min = -1, max = -1, minMin, maxMax;
-	//printf("Here3!\n");
+	printf("Here3!\n");
 	pid_t pid;
 
-	//printf("Here4!\n");
+	printf("Here4!\n");
 
 	fseek(file, 0, SEEK_END); //go to end of file
 	long size = ftell(file); //what byte in file am I at?
 	fseek(file, 0, SEEK_SET); //go to beginning of file
 
 	int nums = (int)size / (int)sizeof(int);
-	//printf("Here5!\n");
+	printf("Here5!\n");
 
 	// create all pipes
-	//printf("Hopefully will make 4 pipes.\n");
+	printf("Hopefully will make 4 pipes.\n");
 
 
 	for (i = 0; i < 8; i++) {
 		pipe(fd[i]);
-		//printf("Opening pipes for %d!\n", i);
+		printf("Opening pipes for %d!\n", i);
 	}
 
-	//printf("After Pipes!\n");
+	printf("After Pipes!\n");
 
 	for (i = 0; i < 4; i++)
 	{
@@ -309,7 +309,7 @@ int main(int numArgs, char *args[]) {
 				count = 0;
 				total = 0;
 
-				//printf("Child(%d): Recieved position: %d\n", pid, fpos);
+				printf("Child(%d): Recieved position: %d\n", pid, fpos);
 
 				// read from file starting at fpos
 				// add values read to a total value
@@ -339,13 +339,13 @@ int main(int numArgs, char *args[]) {
 				}
 				//write to parent
 				write(fd[i + 4][1], &min, sizeof(min));
-				//printf("Child(%d): Sent %d as min to parent.\n", pid, min);
+				printf("Child(%d): Sent %d as min to parent.\n", pid, min);
 				write(fd[i + 4][1], &max, sizeof(max));
-				//printf("Child(%d): Sent %d as max to parent.\n", pid, max);
+				printf("Child(%d): Sent %d as max to parent.\n", pid, max);
 			}
 			else
 			{
-				//printf("Child(%d): Error with len\n", pid);
+				printf("Child(%d): Error with len\n", pid);
 			}
 
 			_exit;
@@ -357,7 +357,7 @@ int main(int numArgs, char *args[]) {
 		fpos = ((i*nums) / 4); // 5 is the offset of the file values
 
 		// write to child process
-		//printf("Parent(%d): Sending file position to child\n", pid);
+		printf("Parent(%d): Sending file position to child\n", pid);
 		write(fd[i][1], &fpos, sizeof(fpos));
 
 		// wait for child responce
@@ -365,7 +365,7 @@ int main(int numArgs, char *args[]) {
 
 		if (len > 0)
 		{
-			//printf("Parent(%d): Recieved %d as min from child.\n", pid, min);
+			printf("Parent(%d): Recieved %d as min from child.\n", pid, min);
 
 			if (i == 0) {
 				minMin = min;
@@ -380,14 +380,14 @@ int main(int numArgs, char *args[]) {
 		}
 		else
 		{
-			//printf("Parent(%d): Error with len\n", pid);
+			printf("Parent(%d): Error with len\n", pid);
 		}
 
 		len = read(fd[i + 4][0], &max, sizeof(max));
 
 		if (len > 0)
 		{
-			//printf("Parent(%d): Recieved %d as max from child.\n", pid, max);
+			printf("Parent(%d): Recieved %d as max from child.\n", pid, max);
 
 			if (i == 0) {
 				maxMax = max;
@@ -402,7 +402,7 @@ int main(int numArgs, char *args[]) {
 		}
 		else
 		{
-			//printf("Parent(%d): Error with len\n", pid);
+			printf("Parent(%d): Error with len\n", pid);
 		}
 		printf("Minimum: %d\t Maximum: %d\n", minMin, maxMax);
 	}
