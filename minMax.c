@@ -410,9 +410,9 @@ int main(int numArgs, char *args[]) {
 			}
 		}
 		else {
-			fseek(readF, 0, SEEK_END); //go to end of file
+			fseek(file, 0, SEEK_END); //go to end of file
 			long size = ftell(readF); //what byte in file am I at?
-			fseek(readF, 0, SEEK_SET); //go to beginning of file
+			fseek(file, 0, SEEK_SET); //go to beginning of file
 			int num = (int)size / (int)sizeof(int);
 			//printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 			int i;
@@ -423,7 +423,7 @@ int main(int numArgs, char *args[]) {
 
 				if (i == 0) {
 					minMin = temp;
-					maxMin = temp;
+					maxMax = temp;
 					//printf("%i: %i : %d\t\n", pid, temp, i);
 				}
 
