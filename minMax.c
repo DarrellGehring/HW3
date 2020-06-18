@@ -357,7 +357,7 @@ int main(int numArgs, char *args[]) {
 		fpos = ((i*nums) / 4);
 
 		// write to child process
-		//printf("Parent(%d): Sending file position to child\n", pid);
+		printf("Parent(%d): Sending file position to child\n", pid);
 		write(fd[i][1], &fpos, sizeof(fpos));
 
 		// wait for child responce
