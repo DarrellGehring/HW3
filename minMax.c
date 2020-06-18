@@ -52,20 +52,14 @@ int main(int numArgs, char *args[]) {
 				{
 					pid = getpid();
 
-					// read from parent
 					len = read(fd[i][0], &fpos, sizeof(fpos));
 					if (len > 0)
 					{
 						fseek(file, fpos*(int)sizeof(int), SEEK_SET);
 						count = 0;
 
-						// printf("Child(%d): Recieved position: %d\n", pid, fpos);
-
-						// read from file starting at fpos
-						// add values read to a total value
 						while (count < (nums / 4))
 						{
-							// printf("Child(%d): Looping in %d.\n", pid, count);
 							int temp = 0;
 							fread(&temp, sizeof(int), 1, file);
 
@@ -75,12 +69,10 @@ int main(int numArgs, char *args[]) {
 							}
 							else {
 								if (max < temp) {
-									//printf("Child(%d): setting max to %d.\n", pid, max);
 									max = temp;
 								}
 
 								if (min > temp) {
-									//printf("Child(%d): setting min to %d.\n", pid, min);
 									min = temp;
 								}
 							}
@@ -89,16 +81,13 @@ int main(int numArgs, char *args[]) {
 						}
 						//write to parent
 						write(fd[i + 4][1], &min, sizeof(min));
-						// printf("Child(%d): Sent %d as min to parent.\n", pid, min);
 						write(fd[i + 4][1], &max, sizeof(max));
-						// printf("Child(%d): Sent %d as max to parent.\n", pid, max);
 					}
 					else
 					{
-						// printf("Child(%d): Error with len\n", pid);
 					}
 
-					exit(0); //Not triggering?
+					exit(0);
 				}
 
 				// parent process
@@ -106,8 +95,6 @@ int main(int numArgs, char *args[]) {
 
 				fpos = ((i*nums) / 4);
 
-				// write to child process
-				// printf("Parent(%d): Sending file position to child\n", pid);
 				write(fd[i][1], &fpos, sizeof(fpos));
 
 				// wait for child responce
@@ -115,7 +102,6 @@ int main(int numArgs, char *args[]) {
 
 				if (len > 0)
 				{
-					//printf("Parent(%d): Recieved %d as min from child.\n", pid, min);
 
 					if (i == 0) {
 						minMin = min;
@@ -126,7 +112,6 @@ int main(int numArgs, char *args[]) {
 						}
 					}
 					//total += total;
-					//printf("Parent(%d): Total: %d\n", pid, total);
 				}
 				else
 				{
@@ -137,8 +122,6 @@ int main(int numArgs, char *args[]) {
 
 				if (len > 0)
 				{
-					//printf("Parent(%d): Recieved %d as max from child.\n", pid, max);
-
 					if (i == 0) {
 						maxMax = max;
 					}
@@ -148,7 +131,6 @@ int main(int numArgs, char *args[]) {
 						}
 					}
 					//total += total;
-					//printf("Parent(%d): Total: %d\n", pid, total);
 				}
 				else
 				{
@@ -161,7 +143,6 @@ int main(int numArgs, char *args[]) {
 			long size = ftell(file); //what byte in file am I at?
 			fseek(file, 0, SEEK_SET); //go to beginning of file
 			int num = (int)size / (int)sizeof(int);
-			//printf("size of the file: %li ,sizeof(int) = %i\n, the number of numbers = %i\n\n", size, (int) sizeof(int), num);
 			int i;
 			for (i = 0; i < num; i++) {
 				int temp = 0;

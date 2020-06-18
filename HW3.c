@@ -43,8 +43,6 @@ int main(int numArgs, char *args[]) {
 
 			if (retVal == -1) {
 				printf("exec was unsuccessful");
-			} else {
-				printf("Execl for minMax complet (1 fork option)");
 			}
 			exit(0);
 		}
@@ -78,8 +76,6 @@ int main(int numArgs, char *args[]) {
 
 			if (retVal == -1) {
 				printf("exec was unsuccessful");
-			} else {
-				printf("Execl for minMax complet (4 fork option)");
 			}
 		}
 		else
@@ -90,7 +86,6 @@ int main(int numArgs, char *args[]) {
 			while (read(cp[0], &ch, 1) == 1)
 			{
 				printf("%c", ch);
-				//write(1, &ch, 1);
 			}
 		}
 	}
