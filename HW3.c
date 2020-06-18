@@ -96,9 +96,8 @@ int main(int numArgs, char *args[]) {
 	}
 
 	clock_t finish = clock();
-	double totalTime = ((double)(finish - start));
 
-	printf("Took %f clock cycles to complete using %s fork(s).", totalTime, args[1]);
+	printf("\nTime elapsed: %.2f\n", 1.0*(finish - start) / CLOCKS_PER_SEC);
 
 	printf("\n");
 	return 0;
