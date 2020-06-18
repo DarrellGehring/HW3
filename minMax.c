@@ -373,7 +373,7 @@ int main(int numArgs, char *args[]) {
 				minMin = min;
 			}
 			else {
-				if (minMin < min) {
+				if (minMin > min) {
 					minMin = min;
 				}
 			}
