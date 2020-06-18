@@ -406,7 +406,7 @@ int main(int numArgs, char *args[]) {
 		}
 
 		printf("Minimum: %d\t Maximum: %d\n", minMin, maxMax);
-
+		exit();
 	}
 	return 0;
 }
