@@ -100,7 +100,7 @@ int main(int numArgs, char *args[]) {
 
 	time += (double)(finish - start) / CLOCKS_PER_SEC;
 
-	printf("Took %f clock cycles to complete using 1 fork(s).", (float)t);
+	printf("Took %f clock cycles to complete using 1 fork(s).", time);
 
 	printf("\n");
 	return 0;
