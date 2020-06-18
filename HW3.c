@@ -46,7 +46,7 @@ int main(int numArgs, char *args[]) {
 			} else {
 				printf("Execl for minMax complet (1 fork option)");
 			}
-			exit(0)
+			exit(0);
 		}
 
 		close(cp[1]); //if you don't close this part of the pipe then the while loop (three lines down) will never return
@@ -96,9 +96,9 @@ int main(int numArgs, char *args[]) {
 		}
 	}
 
+	t = clock() - t;
 	double execTime = ((double)t);
 	printf("Took %f seconds to complete using 1 fork.", execTime);
-	t = clock() - t;
 
 	printf("\n");
 	return 0;
