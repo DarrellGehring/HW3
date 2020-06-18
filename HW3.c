@@ -74,7 +74,7 @@ int main(int numArgs, char *args[]) {
 
 			t = clock() - t;
 
-			double execTime = ((double)t) / CLOCKS_PER_SEC;
+			double execTime = ((double)t);
 
 			printf("Took %f seconds to complete using 1 fork.", execTime);
 		}
