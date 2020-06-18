@@ -255,45 +255,45 @@ int main(int numArgs, char *args[]) {
 #include <unistd.h>
 
 int main(int numArgs, char *args[]) {
-	printf("Starting Main\n");
+	// printf("Starting Main\n");
 
 	if (*args[1] != '1' && *args[1] != '4') {
 		printf("Error: first argument must be 1 or 4 in minMax. Was: %s\n", args[1]);
 		return -1;
 	}
 
-	printf("Here!\n");
+	// printf("Here!\n");
 
 	const char *filename = args[2];
-	printf("Opening file:\n");
+	// printf("Opening file:\n");
 	FILE * file = fopen(filename, "r");
-	printf("Finished.\n");
+	// printf("Finished.\n");
 
 	int fd[8][2]; //parent+child pipe
-	printf("Here2!\n");
+	// printf("Here2!\n");
 	int i, j, len, fpos = 0, val, count = 0, total = 0, min = -1, max = -1, minMin, maxMax;
-	printf("Here3!\n");
+	// printf("Here3!\n");
 	pid_t pid;
 
-	printf("Here4!\n");
+	// printf("Here4!\n");
 
 	fseek(file, 0, SEEK_END); //go to end of file
 	long size = ftell(file); //what byte in file am I at?
 	fseek(file, 0, SEEK_SET); //go to beginning of file
 
 	int nums = (int)size / (int)sizeof(int);
-	printf("Here5!\n");
+	// printf("Here5!\n");
 
 	// create all pipes
-	printf("Hopefully will make 4 pipes.\n");
+	// printf("Hopefully will make 4 pipes.\n");
 
 
 	for (i = 0; i < 8; i++) {
 		pipe(fd[i]);
-		printf("Opening pipes for %d!\n", i);
+		// printf("Opening pipes for %d!\n", i);
 	}
 
-	printf("After Pipes!\n");
+	// printf("After Pipes!\n");
 
 	for (i = 0; i < 4; i++)
 	{
