@@ -262,8 +262,6 @@ int main(int numArgs, char *args[]) {
 		return -1;
 	}
 
-	int 4 = (int)*args[1] - '0';
-
 	//printf("Here!\n");
 
 	const char *filename = args[2];
