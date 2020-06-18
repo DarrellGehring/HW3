@@ -8,14 +8,6 @@
 
 int main(int numArgs, char *args[]) {
 	
-	/*
-	int counter;
-	for (counter = 0; counter < numArgs; counter++)
-		printf("argv[%2d]: %s\n", counter, args[counter]);
-
-	return 0;
-	*/
-	
 	if (numArgs != 3) {
 		printf("Error: requires two arguments.\n");
 		return -1;
@@ -28,9 +20,8 @@ int main(int numArgs, char *args[]) {
 
 	printf("Darrell Gehring\n");
 
-	//printf("FilePath = '%s'\n", args[2]);
-
 	int cp[2];
+	time_t t = clock();
 
 	if (*args[1] == '1') {
 		if (pipe(cp) < 0)
@@ -40,16 +31,13 @@ int main(int numArgs, char *args[]) {
 		}
 
 		char* filePath = args[2];
-		clock_t t;
 		int pid = fork();
-		if (pid == 0)
-		{
+		if (pid == 0) {
 			printf(args[2]);
 			close(1); //close stdout
 			dup2(cp[1], 1); //move stdout to pipe of cp[1]
 			close(0); //close stdin
 			close(cp[0]); //close pipe in
-			t = clock();
 
 			int retVal = execl("minMax", "minMax", "1", filePath, NULL);  //note: All the arguments in exec have to be strings.
 
@@ -58,26 +46,17 @@ int main(int numArgs, char *args[]) {
 			} else {
 				printf("Execl for minMax complet (1 fork option)");
 			}
+			exit(0)
 		}
-		else
+
+		close(cp[1]); //if you don't close this part of the pipe then the while loop (three lines down) will never return
+
+		char ch;
+		while (read(cp[0], &ch, 1) == 1)
 		{
-
-			close(cp[1]); //if you don't close this part of the pipe then the while loop (three lines down) will never return
-
-			char ch;
-			while (read(cp[0], &ch, 1) == 1)
-			{
-				printf("%c", ch);
-				//write(1, &ch, 1);
-				//outcount++;
-			}
-
-			t = clock() - t;
-
-			double execTime = ((double)t);
-
-			printf("Took %f seconds to complete using 1 fork.", execTime);
+			printf("%c", ch);
 		}
+
 	} else if (*args[1] == '4') {
 		if (pipe(cp) < 0)
 		{
@@ -116,6 +95,10 @@ int main(int numArgs, char *args[]) {
 			}
 		}
 	}
+
+	double execTime = ((double)t);
+	printf("Took %f seconds to complete using 1 fork.", execTime);
+	t = clock() - t;
 
 	printf("\n");
 	return 0;
