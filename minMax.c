@@ -332,7 +332,7 @@ int main(int numArgs, char *args[]) {
 			}
 
 			_exit;
-		} else {
+		}
 
 		// parent process
 		pid = getpid();
