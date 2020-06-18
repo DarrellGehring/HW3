@@ -22,7 +22,7 @@ int main(int numArgs, char *args[]) {
 
 	int cp[2];
 
-	time_t start = time(NULL);
+	clock_t start = clock();
 
 	if (*args[1] == '1') {
 		if (pipe(cp) < 0)
@@ -95,9 +95,10 @@ int main(int numArgs, char *args[]) {
 		}
 	}
 
-	time_t finish = time(NULL);
+	clock_t finish = clock();
+	double totalTime = ((double)(finish - start));
 
-	printf("Took %ld clock cycles to complete using 1 fork(s).", (start-finish));
+	printf("Took %f clock cycles to complete using %s fork(s).", totalTime, args[1]);
 
 	printf("\n");
 	return 0;
