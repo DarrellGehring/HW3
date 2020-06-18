@@ -97,8 +97,7 @@ int main(int numArgs, char *args[]) {
 
 	clock_t finish = clock();
 
-	printf("Took %.9f\n seconds for %s forks.", 1.0*(finish - start) / CLOCKS_PER_SEC, args[1]);
+	printf("Took %.9f seconds for %s forks.\n", 1.0*(finish - start) / CLOCKS_PER_SEC, args[1]);
 
-	printf("\n");
 	return 0;
 }
