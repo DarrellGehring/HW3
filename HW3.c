@@ -96,8 +96,8 @@ int main(int numArgs, char *args[]) {
 		}
 	}
 
-	double execTime = (((double)t) / CLOCKS_PER_SEC);
-	printf("Took %f seconds to complete using 1 fork.", execTime);
+	double execTime = ((double)t);
+	printf("Took %f clock cycles to complete using %s fork(s).", execTime, *args[1]);
 	t = clock() - t;
 
 	printf("\n");
