@@ -317,8 +317,9 @@ int main(int numArgs, char *args[]) {
 				// add values read to a total value
 				while (count < (nums / numchild))
 				{
-					fscanf(file, "%i", &val);
-					total += val;
+					int temp = 0;
+					fread(&temp, sizeof(int), 1, readF);
+					total += temp;
 					count++;
 				}
 				//write to parent
